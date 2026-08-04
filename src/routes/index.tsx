@@ -4,6 +4,7 @@ import { Ambient } from "@/components/site/Ambient";
 import { SplitText } from "@/components/site/AnimatedText";
 import { Typewriter } from "@/components/site/motion-bits";
 import { profile, RESUME_URL } from "@/lib/portfolio-data";
+import heroVisual from "@/assets/hero-visual.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -112,18 +113,18 @@ function Home() {
           </div>
         </div>
 
-        {/* Spline 3D embed */}
+        {/* Hero visual */}
         <div
           className="relative min-w-0"
           style={{ animation: "rise-in .9s var(--ease-out-soft) both", animationDelay: "300ms" }}
         >
           <div className="glass-panel relative aspect-square w-full overflow-hidden rounded-[2rem] sm:aspect-[4/3] lg:aspect-square">
-            <iframe
-              src="https://my.spline.design/retrofuturismbganimation-QmN5pzStc5fSY0vv53YgNIgl/"
-              title="Interactive 3D retro-futurism animation"
-              loading="lazy"
-              className="h-full w-full"
-              style={{ border: 0 }}
+            <img
+              src={heroVisual}
+              alt="Abstract retro-futuristic 3D composition in aqua and violet"
+              width={1024}
+              height={1024}
+              className="h-full w-full object-cover"
             />
             <div
               aria-hidden
