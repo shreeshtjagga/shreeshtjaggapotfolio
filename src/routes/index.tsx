@@ -9,17 +9,17 @@ import heroVisual from "@/assets/hero-visual.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Shreesht Jagga — Machine Learning & Data Science" },
+      { title: "Shreesht Jagga Portfolio" },
       {
         name: "description",
         content:
-          "Portfolio of Shreesht Jagga — final-year B.Tech Data Science student building applied ML systems, high-performance backends, and agentic AI platforms.",
+          "Portfolio of Shreesht Jagga — B.Tech Data Science student building applied ML systems, high-performance backends, and agentic AI platforms.",
       },
-      { property: "og:title", content: "Shreesht Jagga — Machine Learning & Data Science" },
+      { property: "og:title", content: "Shreesht Jagga Portfolio" },
       {
         property: "og:description",
         content:
-          "Applied ML, agentic AI platforms, and high-performance backend systems. Projects, skills, and experience.",
+          "Portfolio of Shreesht Jagga — B.Tech Data Science student building applied ML systems, high-performance backends, and agentic AI platforms.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },

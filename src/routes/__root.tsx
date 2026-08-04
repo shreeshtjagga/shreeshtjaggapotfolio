@@ -79,17 +79,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Shreesht Jagga — Machine Learning & Data Science" },
+      { title: "Shreesht Jagga Portfolio" },
       {
         name: "description",
         content:
-          "Portfolio of Shreesht Jagga — machine learning, data science, and backend engineering.",
+          "Portfolio of Shreesht Jagga — B.Tech Data Science student building applied ML systems, high-performance backends, and agentic AI platforms.",
       },
       { name: "author", content: "Shreesht Jagga" },
       { property: "og:site_name", content: "Shreesht Jagga" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#14161f" },
+      { property: "og:title", content: "Shreesht Jagga Portfolio" },
+      { name: "twitter:title", content: "Shreesht Jagga Portfolio" },
+      { property: "og:description", content: "Portfolio of Shreesht Jagga — B.Tech Data Science student building applied ML systems, high-performance backends, and agentic AI platforms." },
+      { name: "twitter:description", content: "Portfolio of Shreesht Jagga — B.Tech Data Science student building applied ML systems, high-performance backends, and agentic AI platforms." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/7c235fcc-1e2f-4279-91f9-2a2c767cf2b0" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/7c235fcc-1e2f-4279-91f9-2a2c767cf2b0" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
