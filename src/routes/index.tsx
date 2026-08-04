@@ -46,9 +46,7 @@ function Home() {
           <h1 className="mt-6 font-display text-[2.6rem] font-semibold leading-[1.03] sm:text-6xl lg:text-[4.2rem]">
             <SplitText text="Shreesht" delay={120} />
             <br />
-            <span className="text-gradient">
-              <SplitText text="Jagga" delay={420} />
-            </span>
+            <SplitText text="Jagga" delay={420} charClassName="text-gradient" />
           </h1>
 
           <p
