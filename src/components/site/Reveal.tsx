@@ -26,6 +26,11 @@ export function Reveal({
       setVisible(true);
       return;
     }
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.95 && rect.bottom > 0) {
+      setVisible(true);
+      return;
+    }
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0]?.isIntersecting) {
@@ -33,7 +38,7 @@ export function Reveal({
           io.disconnect();
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.06, rootMargin: "0px 0px -6% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
