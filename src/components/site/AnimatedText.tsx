@@ -3,11 +3,13 @@ import { cn } from "@/lib/utils";
 export function SplitText({
   text,
   className,
+  charClassName,
   delay = 0,
   step = 34,
 }: {
   text: string;
   className?: string;
+  charClassName?: string;
   delay?: number;
   step?: number;
 }) {
@@ -18,7 +20,7 @@ export function SplitText({
         <span
           key={`${c}-${i}`}
           aria-hidden
-          className="animate-char-in inline-block"
+          className={cn("animate-char-in inline-block", charClassName)}
           style={{ animationDelay: `${delay + i * step}ms` }}
         >
           {c === " " ? "\u00A0" : c}
