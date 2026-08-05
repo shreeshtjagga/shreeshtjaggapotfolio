@@ -233,3 +233,18 @@ export const timeline = [
     ],
   },
 ];
+
+export const aboutParagraphs = [
+  "I'm Shreesht Jagga, a final-year B.Tech Data Science student in Hyderabad who got into this field the long way round — by rebuilding things from scratch until they finally made sense. Ensemble methods, Bayesian networks, hidden Markov models: I wrote them by hand before I ever reached for a library, and that habit still shapes how I debug models today.",
+  "These days most of my time goes into applied ML and the systems around it. I build FastAPI backends with Redis caching, Celery workers and JWT auth, wire LLM agents together with LangGraph and ChromaDB, and care a lot about the unglamorous parts — rate limiting, audit logs, security headers, and keeping p95 latency boring.",
+  "My internship at Cantilever Labs pushed me into real-time computer vision: a live webcam gesture-recognition pipeline built on OpenCV and MediaPipe, where every millisecond of preprocessing showed up on screen. It taught me to treat performance as a feature, not an afterthought.",
+  "I'm actively looking for research and research assistant roles, alongside software and ML engineering work. What draws me most is research-adjacent engineering — building the platforms, pipelines and evaluation tooling that let researchers move faster, and being close enough to the science to contribute to it.",
+  "Outside structured work I read papers, reimplement the interesting ones, and keep a running list of ideas I want to test. If it involves data, probability, or a system that has to stay up, I'm interested.",
+];
+
+export const focusAreas = [
+  { title: "Applied ML & NLP", body: "Model design, evaluation and iteration — from feature engineering to LLM-driven pipelines." },
+  { title: "Backend Systems", body: "FastAPI services, PostgreSQL, Redis, Celery workers, auth and hardened security defaults." },
+  { title: "Agentic AI", body: "Multi-agent orchestration with LangGraph, retrieval with ChromaDB, and grounded LLM workflows." },
+  { title: "Research Support", body: "Data pipelines, reproducible experiments and tooling that shortens the loop for research teams." },
+];
