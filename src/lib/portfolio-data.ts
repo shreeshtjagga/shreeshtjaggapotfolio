@@ -1,4 +1,6 @@
 import resumeAsset from "@/assets/resume.pdf.asset.json";
+import awsLogo from "@/assets/aws-logo.png.asset.json";
+import oracleLogo from "@/assets/oracle-logo.png.asset.json";
 import ciscoLogo from "@/assets/cisco-logo.png.asset.json";
 
 export const RESUME_URL = resumeAsset.url;
@@ -176,13 +178,13 @@ export const certifications = [
     title: "Generative AI Practitioner",
     issuer: "AWS",
     short: "AWS",
-    logo: "https://cdn.simpleicons.org/amazonwebservices/FF9900",
+    logo: awsLogo.url,
   },
   {
     title: "Generative AI Foundations Trained",
     issuer: "AWS",
     short: "AWS",
-    logo: "https://cdn.simpleicons.org/amazonwebservices/FF9900",
+    logo: awsLogo.url,
   },
   {
     title: "Python Essentials",
@@ -194,13 +196,13 @@ export const certifications = [
     title: "Database Design",
     issuer: "Oracle Academy",
     short: "Oracle",
-    logo: "https://cdn.simpleicons.org/oracle/C74634",
+    logo: oracleLogo.url,
   },
   {
     title: "Database Programming with SQL",
     issuer: "Oracle Academy",
     short: "Oracle",
-    logo: "https://cdn.simpleicons.org/oracle/C74634",
+    logo: oracleLogo.url,
   },
 ] as const;
 
