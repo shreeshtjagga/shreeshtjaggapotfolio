@@ -340,30 +340,6 @@
   }
 }
 
-/* Hero robot: gentle hovering sway so the wave reads as alive */
-@keyframes robot-sway {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-  35% {
-    transform: translate3d(0, -10px, 0) rotate(-1.4deg);
-  }
-  70% {
-    transform: translate3d(0, -4px, 0) rotate(1.2deg);
-  }
-}
-
-@keyframes float-soft {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -8px, 0);
-  }
-}
-
 .animate-page-enter {
   animation: page-enter 0.5s var(--ease-out-soft) both;
 }

@@ -64,37 +64,43 @@ function Skills() {
       intro="Grouped by where they live in the stack — from writing models by hand to shipping them on infrastructure that stays up."
       tone="violet"
     >
-      <div className="grid gap-5 pb-6 lg:grid-cols-2">
+      <div className="space-y-10 pb-6">
         {skillGroups.map((group, gi) => {
           const Icon = icons[group.title] ?? Boxes;
           return (
-            <Reveal key={group.title} variant="scale" delay={gi * 60}>
-
-              <section className="surface-card px-5 py-5 sm:px-6">
+            <Reveal
+              key={group.title}
+              variant={gi % 2 === 0 ? "slide-left" : "slide-right"}
+              delay={gi * 40}
+            >
+              <section className="surface-card px-6 py-7 sm:px-8">
                 <div className="flex min-w-0 items-center gap-3">
-                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-primary/35 bg-primary/8 text-primary">
-                    <Icon size={16} />
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-primary/35 bg-primary/8 text-primary">
+                    <Icon size={18} />
                   </span>
-                  <h2 className="truncate font-display text-base font-semibold sm:text-lg">
+                  <h2 className="truncate font-display text-lg font-semibold sm:text-xl">
                     {group.title}
                   </h2>
+                  <span className="ml-auto shrink-0 font-mono text-xs text-muted-foreground">
+                    {String(gi + 1).padStart(2, "0")}
+                  </span>
                 </div>
 
-                <ul className="mt-4 flex flex-wrap gap-2.5">
+                <ul className="mt-6 flex flex-wrap gap-3">
                   {group.items.map((item, i) => (
                     <li key={item}>
                       <div
                         title={item}
-                        className="group relative flex items-center gap-2 rounded-xl border border-border/70 bg-surface/40 px-3 py-2 transition-all duration-400 hover:-translate-y-0.5 hover:border-primary/55 hover:shadow-[0_0_22px_-8px_var(--glow)]"
+                        className="group relative flex items-center gap-3 rounded-2xl border border-border/70 bg-surface/40 px-4 py-3 transition-all duration-400 hover:-translate-y-1 hover:border-primary/55 hover:shadow-[0_0_26px_-8px_var(--glow)]"
                         style={{
                           animation: "pop-in .5s var(--ease-out-soft) both",
                           animationDelay: `${i * 45}ms`,
                         }}
                       >
-                        <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md bg-[image:var(--gradient-accent)] font-mono text-[9px] font-bold text-primary-foreground opacity-90 transition-transform duration-400 group-hover:scale-110 group-hover:rotate-6">
+                        <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[image:var(--gradient-accent)] font-mono text-[11px] font-bold text-primary-foreground opacity-90 transition-transform duration-400 group-hover:scale-110 group-hover:rotate-6">
                           {initials(item)}
                         </span>
-                        <span className="text-[13px] text-foreground/90">{item}</span>
+                        <span className="text-sm text-foreground/90">{item}</span>
                       </div>
                     </li>
                   ))}
