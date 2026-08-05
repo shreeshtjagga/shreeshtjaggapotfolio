@@ -3,7 +3,7 @@ import { ArrowRight, Download } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
 import { CountUp } from "@/components/site/motion-bits";
-import { profile, RESUME_URL } from "@/lib/portfolio-data";
+import { aboutParagraphs, focusAreas, RESUME_URL } from "@/lib/portfolio-data";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
