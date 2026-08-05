@@ -4,7 +4,7 @@ import { Ambient } from "@/components/site/Ambient";
 import { SplitText } from "@/components/site/AnimatedText";
 import { Typewriter } from "@/components/site/motion-bits";
 import { profile, RESUME_URL } from "@/lib/portfolio-data";
-import heroVisual from "@/assets/hero-visual.jpg";
+import heroRobot from "@/assets/hero-robot.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -40,8 +40,8 @@ function Home() {
             className="inline-flex items-center gap-2 rounded-full border border-primary/35 bg-primary/5 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.24em] text-primary"
             style={{ animation: "rise-in .6s var(--ease-out-soft) both" }}
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            Open to SWE / ML roles
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
+            Open to Research &amp; Research Assistant roles
           </p>
 
           <h1 className="mt-6 font-display text-[2.6rem] font-semibold leading-[1.03] sm:text-6xl lg:text-[4.2rem]">
@@ -113,28 +113,32 @@ function Home() {
           </div>
         </div>
 
-        {/* Hero visual */}
+        {/* Hero visual — waving robot, blended into the background */}
         <div
           className="relative min-w-0"
           style={{ animation: "rise-in .9s var(--ease-out-soft) both", animationDelay: "300ms" }}
         >
-          <div className="glass-panel relative aspect-square w-full overflow-hidden rounded-[2rem] sm:aspect-[4/3] lg:aspect-square">
+          <div className="relative aspect-square w-full">
             <img
-              src={heroVisual}
-              alt="Abstract retro-futuristic 3D composition in aqua and violet"
+              src={heroRobot}
+              alt="Friendly humanoid robot waving hello, rendered in aqua and violet light"
               width={1024}
               height={1024}
-              className="h-full w-full object-cover"
-            />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-primary/20"
+              className="h-full w-full select-none object-contain will-change-transform"
+              style={{
+                animation: "robot-sway 6s var(--ease-out-soft) infinite",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 68% 68% at 50% 45%, #000 55%, transparent 92%)",
+                maskImage:
+                  "radial-gradient(ellipse 68% 68% at 50% 45%, #000 55%, transparent 92%)",
+                filter: "saturate(1.05) contrast(1.03)",
+              }}
             />
           </div>
           <div
             aria-hidden
-            className="absolute -inset-6 -z-10 rounded-[3rem] opacity-50 blur-3xl"
-            style={{ background: "var(--gradient-accent)", opacity: 0.14 }}
+            className="absolute inset-6 -z-10 rounded-full blur-3xl"
+            style={{ background: "var(--gradient-accent)", opacity: 0.18 }}
           />
         </div>
       </section>

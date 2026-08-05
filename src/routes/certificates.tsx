@@ -44,8 +44,13 @@ function Certificates() {
           <Reveal key={c.title} variant="scale" delay={i * 80}>
             <article className="surface-card lift-hover group flex h-full flex-col px-6 py-7">
               <div className="flex min-w-0 items-center gap-3">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-primary/30 bg-primary/8 font-mono text-xs font-bold text-primary transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105">
-                  {c.short}
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl border border-border/70 bg-foreground/90 p-2.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:scale-105">
+                  <img
+                    src={c.logo}
+                    alt={`${c.issuer} logo`}
+                    loading="lazy"
+                    className="h-full w-full object-contain"
+                  />
                 </span>
                 <span className="ml-auto shrink-0 text-primary/70">
                   <Award size={18} />
@@ -90,14 +95,16 @@ function Certificates() {
             <p className="mt-1 text-sm text-muted-foreground">{active.issuer}</p>
             <div className="mt-6 grid aspect-[4/3] place-items-center rounded-2xl border border-dashed border-primary/35 bg-surface/40 text-center">
               <div className="px-6">
-                <p className="grid mx-auto h-14 w-14 place-items-center rounded-2xl border border-primary/30 font-mono text-sm font-bold text-primary">
-                  {active.short}
-                </p>
+                <img
+                  src={active.logo}
+                  alt={`${active.issuer} logo`}
+                  className="mx-auto h-16 w-auto object-contain"
+                />
                 <p className="mt-4 font-mono text-xs uppercase tracking-[0.2em] text-primary/80">
                   [ADD CERTIFICATE IMAGE]
                 </p>
                 <p className="mt-2 text-xs text-muted-foreground">
-                  Company logo placeholder — replace with the actual certificate image or PDF.
+                  Replace this frame with the actual certificate image or PDF.
                 </p>
               </div>
             </div>
