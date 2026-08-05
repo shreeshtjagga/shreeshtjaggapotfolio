@@ -1,4 +1,5 @@
 import resumeAsset from "@/assets/resume.pdf.asset.json";
+import ciscoLogo from "@/assets/cisco-logo.png.asset.json";
 
 export const RESUME_URL = resumeAsset.url;
 
