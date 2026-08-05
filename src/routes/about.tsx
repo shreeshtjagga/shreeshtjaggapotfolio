@@ -71,18 +71,28 @@ function About() {
         </Reveal>
 
         <div>
-          {profile.summary.split(". ").reduce<string[][]>((acc, s, i) => {
-            const idx = Math.floor(i / 2);
-            acc[idx] = [...(acc[idx] ?? []), s];
-            return acc;
-          }, []).map((chunk, i) => (
-            <Reveal key={i} delay={i * 120} className="mb-5">
-              <p className="text-[15px] leading-[1.85] text-muted-foreground">
-                {chunk.join(". ")}
-                {chunk.join(". ").endsWith(".") ? "" : "."}
-              </p>
+          {aboutParagraphs.map((p, i) => (
+            <Reveal key={i} delay={i * 90} className="mb-5">
+              <p className="text-[15px] leading-[1.85] text-muted-foreground">{p}</p>
             </Reveal>
           ))}
+
+          <Reveal delay={160}>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {focusAreas.map((f, i) => (
+                <div
+                  key={f.title}
+                  className="surface-card lift-hover px-5 py-5"
+                  style={{ transitionDelay: `${i * 20}ms` }}
+                >
+                  <p className="font-display text-[15px] font-semibold">{f.title}</p>
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
+                    {f.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
 
           <Reveal delay={200}>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

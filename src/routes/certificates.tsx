@@ -44,8 +44,13 @@ function Certificates() {
           <Reveal key={c.title} variant="scale" delay={i * 80}>
             <article className="surface-card lift-hover group flex h-full flex-col px-6 py-7">
               <div className="flex min-w-0 items-center gap-3">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-primary/30 bg-primary/8 font-mono text-xs font-bold text-primary transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105">
-                  {c.short}
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl border border-border/70 bg-foreground/[0.06] p-2.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:scale-105">
+                  <img
+                    src={c.logo}
+                    alt={`${c.issuer} logo`}
+                    loading="lazy"
+                    className="h-full w-full object-contain"
+                  />
                 </span>
                 <span className="ml-auto shrink-0 text-primary/70">
                   <Award size={18} />
