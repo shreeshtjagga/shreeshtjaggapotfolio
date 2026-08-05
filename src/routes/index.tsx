@@ -40,8 +40,8 @@ function Home() {
             className="inline-flex items-center gap-2 rounded-full border border-primary/35 bg-primary/5 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.24em] text-primary"
             style={{ animation: "rise-in .6s var(--ease-out-soft) both" }}
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            Open to SWE / ML roles
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
+            Open to Research &amp; Research Assistant roles
           </p>
 
           <h1 className="mt-6 font-display text-[2.6rem] font-semibold leading-[1.03] sm:text-6xl lg:text-[4.2rem]">
