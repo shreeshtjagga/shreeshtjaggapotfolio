@@ -95,14 +95,16 @@ function Certificates() {
             <p className="mt-1 text-sm text-muted-foreground">{active.issuer}</p>
             <div className="mt-6 grid aspect-[4/3] place-items-center rounded-2xl border border-dashed border-primary/35 bg-surface/40 text-center">
               <div className="px-6">
-                <p className="grid mx-auto h-14 w-14 place-items-center rounded-2xl border border-primary/30 font-mono text-sm font-bold text-primary">
-                  {active.short}
-                </p>
+                <img
+                  src={active.logo}
+                  alt={`${active.issuer} logo`}
+                  className="mx-auto h-16 w-auto object-contain"
+                />
                 <p className="mt-4 font-mono text-xs uppercase tracking-[0.2em] text-primary/80">
                   [ADD CERTIFICATE IMAGE]
                 </p>
                 <p className="mt-2 text-xs text-muted-foreground">
-                  Company logo placeholder — replace with the actual certificate image or PDF.
+                  Replace this frame with the actual certificate image or PDF.
                 </p>
               </div>
             </div>
