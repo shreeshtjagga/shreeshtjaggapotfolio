@@ -64,15 +64,12 @@ function Skills() {
       intro="Grouped by where they live in the stack — from writing models by hand to shipping them on infrastructure that stays up."
       tone="violet"
     >
-      <div className="space-y-10 pb-6">
+      <div className="grid gap-5 pb-6 lg:grid-cols-2">
         {skillGroups.map((group, gi) => {
           const Icon = icons[group.title] ?? Boxes;
           return (
-            <Reveal
-              key={group.title}
-              variant={gi % 2 === 0 ? "slide-left" : "slide-right"}
-              delay={gi * 40}
-            >
+            <Reveal key={group.title} variant="scale" delay={gi * 60}>
+
               <section className="surface-card px-5 py-5 sm:px-6">
                 <div className="flex min-w-0 items-center gap-3">
                   <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-primary/35 bg-primary/8 text-primary">
