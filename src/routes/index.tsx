@@ -4,7 +4,7 @@ import { Ambient } from "@/components/site/Ambient";
 import { SplitText } from "@/components/site/AnimatedText";
 import { Typewriter } from "@/components/site/motion-bits";
 import { profile, RESUME_URL } from "@/lib/portfolio-data";
-import heroVisual from "@/assets/hero-visual.jpg";
+import heroRobot from "@/assets/hero-robot.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
