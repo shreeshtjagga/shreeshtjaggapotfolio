@@ -67,7 +67,7 @@ export const skillGroups = [
   },
   {
     title: "Cloud & Deployment",
-    items: ["AWS", "Fly.io", "Render", "Vercel"],
+    items: ["AWS", "Render", "Vercel"],
   },
   {
     title: "Tools",
