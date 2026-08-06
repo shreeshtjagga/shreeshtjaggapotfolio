@@ -44,8 +44,13 @@ function Certificates() {
           <Reveal key={c.title} variant="scale" delay={i * 80}>
             <article className="surface-card lift-hover group flex h-full flex-col px-6 py-7">
               <div className="flex min-w-0 items-center gap-3">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-primary/30 bg-primary/8 font-mono text-xs font-bold text-primary transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105">
-                  {c.short}
+                <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-2xl border border-primary/30 bg-white/95 p-1.5 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105">
+                  <img
+                    src={c.logo}
+                    alt={`${c.issuer} logo`}
+                    loading="lazy"
+                    className="h-full w-full object-contain"
+                  />
                 </span>
                 <span className="ml-auto shrink-0 text-primary/70">
                   <Award size={18} />
@@ -65,16 +70,36 @@ function Certificates() {
         ))}
       </div>
 
+      <Reveal delay={140}>
+        <div className="glass-panel mt-10 flex flex-col gap-4 rounded-2xl px-6 py-6 sm:flex-row sm:items-center">
+          <div className="min-w-0">
+            <p className="font-display text-lg">Verified badges on Credly</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              All digital credentials, issued and verifiable.
+            </p>
+          </div>
+          <a
+            href={CREDLY_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="group inline-flex w-fit shrink-0 items-center gap-2 rounded-full border border-primary/45 px-5 py-2.5 text-sm text-primary transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_24px_-8px_var(--glow)] sm:ml-auto"
+          >
+            View Credly profile
+            <ExternalLink size={15} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+          </a>
+        </div>
+      </Reveal>
+
       {active && (
         <div
           role="dialog"
           aria-modal="true"
           aria-label={active.title}
-          className="fixed inset-0 z-[60] grid place-items-center bg-background/85 px-4 backdrop-blur-md"
+          className="fixed inset-0 z-[60] grid place-items-center overflow-y-auto bg-background/85 px-4 py-10 backdrop-blur-md"
           onClick={() => setActive(null)}
         >
           <div
-            className="glass-panel relative w-full max-w-xl rounded-3xl px-7 py-8"
+            className="glass-panel relative w-full max-w-2xl rounded-3xl px-7 py-8"
             style={{ animation: "pop-in .35s var(--ease-out-soft) both" }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -88,18 +113,13 @@ function Certificates() {
             </button>
             <h3 className="pr-10 font-display text-xl font-semibold">{active.title}</h3>
             <p className="mt-1 text-sm text-muted-foreground">{active.issuer}</p>
-            <div className="mt-6 grid aspect-[4/3] place-items-center rounded-2xl border border-dashed border-primary/35 bg-surface/40 text-center">
-              <div className="px-6">
-                <p className="grid mx-auto h-14 w-14 place-items-center rounded-2xl border border-primary/30 font-mono text-sm font-bold text-primary">
-                  {active.short}
-                </p>
-                <p className="mt-4 font-mono text-xs uppercase tracking-[0.2em] text-primary/80">
-                  [ADD CERTIFICATE IMAGE]
-                </p>
-                <p className="mt-2 text-xs text-muted-foreground">
-                  Company logo placeholder — replace with the actual certificate image or PDF.
-                </p>
-              </div>
+            <div className="mt-6 overflow-hidden rounded-2xl border border-border/70 bg-white/95">
+              <img
+                src={active.image}
+                alt={`${active.title} certificate`}
+                loading="lazy"
+                className="h-full w-full object-contain"
+              />
             </div>
           </div>
         </div>
