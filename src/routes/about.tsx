@@ -84,22 +84,7 @@ function About() {
             </Reveal>
           ))}
 
-          <Reveal delay={200}>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {stats.map((s, i) => (
-                <div
-                  key={s.label}
-                  className="surface-card lift-hover px-5 py-6"
-                  style={{ transitionDelay: `${i * 20}ms` }}
-                >
-                  <p className="font-display text-3xl font-semibold text-gradient">
-                    <CountUp to={s.value} />
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">{s.label}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
+
 
           <Reveal delay={260}>
             <div className="glass-panel mt-10 flex flex-col gap-4 rounded-2xl px-6 py-6 sm:flex-row sm:items-center">
