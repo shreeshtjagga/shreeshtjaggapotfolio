@@ -1,6 +1,17 @@
 import resumeAsset from "@/assets/resume.pdf.asset.json";
+import logoAws from "@/assets/logo-aws.jpg.asset.json";
+import logoCisco from "@/assets/logo-cisco.png.asset.json";
+import logoOracle from "@/assets/logo-oracle.png.asset.json";
+import logoCantilever from "@/assets/logo-cantilever.png.asset.json";
+import certAwsPractitioner from "@/assets/cert-aws-practitioner.png.asset.json";
+import certAwsFoundations from "@/assets/cert-aws-foundations.png.asset.json";
+import certCiscoPython from "@/assets/cert-cisco-python.jpg.asset.json";
+import certOracleDesign from "@/assets/cert-oracle-design.jpg.asset.json";
+import certOracleSql from "@/assets/cert-oracle-sql.jpg.asset.json";
 
 export const RESUME_URL = resumeAsset.url;
+export const CREDLY_URL = "https://www.credly.com/users/shreeshtjagga/badges/credly";
+export const CANTILEVER_LOGO = logoCantilever.url;
 
 export const profile = {
   name: "Shreesht Jagga",
