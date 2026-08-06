@@ -181,11 +181,41 @@ export const projects: Project[] = [
 ];
 
 export const certifications = [
-  { title: "Python Essentials", issuer: "Cisco Networking Academy", short: "Cisco" },
-  { title: "Database Design", issuer: "Oracle Academy", short: "Oracle" },
-  { title: "Database Programming with SQL", issuer: "Oracle Academy", short: "Oracle" },
-  { title: "Generative AI Practitioner", issuer: "AWS", short: "AWS" },
-  { title: "Generative AI Foundations Trained", issuer: "AWS", short: "AWS" },
+  {
+    title: "Generative AI Practitioner",
+    issuer: "AWS Cloud Quest",
+    short: "AWS",
+    logo: logoAws.url,
+    image: certAwsPractitioner.url,
+  },
+  {
+    title: "Generative AI Foundations Trained",
+    issuer: "AWS Academy",
+    short: "AWS",
+    logo: logoAws.url,
+    image: certAwsFoundations.url,
+  },
+  {
+    title: "Python Essentials",
+    issuer: "Cisco Networking Academy",
+    short: "Cisco",
+    logo: logoCisco.url,
+    image: certCiscoPython.url,
+  },
+  {
+    title: "Database Design",
+    issuer: "Oracle Academy",
+    short: "Oracle",
+    logo: logoOracle.url,
+    image: certOracleDesign.url,
+  },
+  {
+    title: "Database Programming with SQL",
+    issuer: "Oracle Academy",
+    short: "Oracle",
+    logo: logoOracle.url,
+    image: certOracleSql.url,
+  },
 ] as const;
 
 export const timeline = [
