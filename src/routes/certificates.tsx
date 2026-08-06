@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Award, X } from "lucide-react";
+import { Award, ExternalLink, X } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
-import { certifications } from "@/lib/portfolio-data";
+import { certifications, CREDLY_URL } from "@/lib/portfolio-data";
 
 export const Route = createFileRoute("/certificates")({
   head: () => ({
