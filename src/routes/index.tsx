@@ -5,6 +5,7 @@ import { SplitText } from "@/components/site/AnimatedText";
 import { Typewriter } from "@/components/site/motion-bits";
 import { profile, RESUME_URL } from "@/lib/portfolio-data";
 import heroVisual from "@/assets/hero-visual.jpg";
+import robotWave from "@/assets/robot-wave.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({

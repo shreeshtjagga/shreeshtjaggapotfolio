@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Download } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
-import { CountUp } from "@/components/site/motion-bits";
 import { profile, RESUME_URL } from "@/lib/portfolio-data";
 
 export const Route = createFileRoute("/about")({
@@ -27,12 +26,6 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const stats = [
-  { label: "Projects Built", value: 5 },
-  { label: "Certifications", value: 5 },
-  { label: "Internships", value: 1 },
-  { label: "Core Tech Areas", value: 7 },
-];
 
 function About() {
   return (
