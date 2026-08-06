@@ -54,8 +54,6 @@ export const skillGroups = [
       "Supervised Learning",
       "Unsupervised Learning",
       "Ensemble Methods",
-      "Probabilistic Graphical Models",
-      "Neural Networks (from scratch)",
       "Prompt Engineering",
       "Generative AI",
     ],
