@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Briefcase, ExternalLink, GraduationCap, MapPin } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
-import { timeline } from "@/lib/portfolio-data";
+import { timeline, CANTILEVER_LOGO } from "@/lib/portfolio-data";
 
 export const Route = createFileRoute("/experience")({
   head: () => ({
@@ -65,7 +65,19 @@ function Experience() {
                     <h2 className="mt-4 font-display text-xl font-semibold sm:text-2xl">
                       {entry.title}
                     </h2>
-                    <p className="mt-1 text-sm text-foreground/85">{entry.org}</p>
+                    <div className="mt-2 flex items-center gap-3">
+                      {entry.org === "Cantilever Labs" && (
+                        <span className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-xl border border-border/70 bg-white/95 p-1">
+                          <img
+                            src={CANTILEVER_LOGO}
+                            alt="Cantilever Labs logo"
+                            loading="lazy"
+                            className="h-full w-full object-contain"
+                          />
+                        </span>
+                      )}
+                      <p className="text-sm text-foreground/85">{entry.org}</p>
+                    </div>
                     <p className="mt-1 inline-flex items-center gap-1.5 text-xs text-muted-foreground">
                       <MapPin size={12} /> {entry.location}
                     </p>

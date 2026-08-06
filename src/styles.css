@@ -4,6 +4,20 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@keyframes robot-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2.5deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(2.5deg);
+  }
+}
+.robot-float {
+  animation: robot-bob 3.4s ease-in-out infinite;
+}
+
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

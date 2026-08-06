@@ -1,6 +1,17 @@
 import resumeAsset from "@/assets/resume.pdf.asset.json";
+import logoAws from "@/assets/logo-aws.jpg.asset.json";
+import logoCisco from "@/assets/logo-cisco.png.asset.json";
+import logoOracle from "@/assets/logo-oracle.png.asset.json";
+import logoCantilever from "@/assets/logo-cantilever.png.asset.json";
+import certAwsPractitioner from "@/assets/cert-aws-practitioner.png.asset.json";
+import certAwsFoundations from "@/assets/cert-aws-foundations.png.asset.json";
+import certCiscoPython from "@/assets/cert-cisco-python.jpg.asset.json";
+import certOracleDesign from "@/assets/cert-oracle-design.jpg.asset.json";
+import certOracleSql from "@/assets/cert-oracle-sql.jpg.asset.json";
 
 export const RESUME_URL = resumeAsset.url;
+export const CREDLY_URL = "https://www.credly.com/users/shreeshtjagga/badges/credly";
+export const CANTILEVER_LOGO = logoCantilever.url;
 
 export const profile = {
   name: "Shreesht Jagga",
@@ -43,8 +54,6 @@ export const skillGroups = [
       "Supervised Learning",
       "Unsupervised Learning",
       "Ensemble Methods",
-      "Probabilistic Graphical Models",
-      "Neural Networks (from scratch)",
       "Prompt Engineering",
       "Generative AI",
     ],
@@ -68,7 +77,7 @@ export const skillGroups = [
   },
   {
     title: "Cloud & Deployment",
-    items: ["AWS", "Fly.io", "Render", "Vercel"],
+    items: ["AWS", "Render", "Vercel"],
   },
   {
     title: "Tools",
@@ -172,11 +181,41 @@ export const projects: Project[] = [
 ];
 
 export const certifications = [
-  { title: "Python Essentials", issuer: "Cisco Networking Academy", short: "Cisco" },
-  { title: "Database Design", issuer: "Oracle Academy", short: "Oracle" },
-  { title: "Database Programming with SQL", issuer: "Oracle Academy", short: "Oracle" },
-  { title: "Generative AI Practitioner", issuer: "AWS", short: "AWS" },
-  { title: "Generative AI Foundations Trained", issuer: "AWS", short: "AWS" },
+  {
+    title: "Generative AI Practitioner",
+    issuer: "AWS Cloud Quest",
+    short: "AWS",
+    logo: logoAws.url,
+    image: certAwsPractitioner.url,
+  },
+  {
+    title: "Generative AI Foundations Trained",
+    issuer: "AWS Academy",
+    short: "AWS",
+    logo: logoAws.url,
+    image: certAwsFoundations.url,
+  },
+  {
+    title: "Python Essentials",
+    issuer: "Cisco Networking Academy",
+    short: "Cisco",
+    logo: logoCisco.url,
+    image: certCiscoPython.url,
+  },
+  {
+    title: "Database Design",
+    issuer: "Oracle Academy",
+    short: "Oracle",
+    logo: logoOracle.url,
+    image: certOracleDesign.url,
+  },
+  {
+    title: "Database Programming with SQL",
+    issuer: "Oracle Academy",
+    short: "Oracle",
+    logo: logoOracle.url,
+    image: certOracleSql.url,
+  },
 ] as const;
 
 export const timeline = [

@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Download } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
-import { CountUp } from "@/components/site/motion-bits";
 import { profile, RESUME_URL } from "@/lib/portfolio-data";
 
 export const Route = createFileRoute("/about")({
@@ -27,12 +26,6 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const stats = [
-  { label: "Projects Built", value: 5 },
-  { label: "Certifications", value: 5 },
-  { label: "Internships", value: 1 },
-  { label: "Core Tech Areas", value: 7 },
-];
 
 function About() {
   return (
@@ -84,22 +77,7 @@ function About() {
             </Reveal>
           ))}
 
-          <Reveal delay={200}>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {stats.map((s, i) => (
-                <div
-                  key={s.label}
-                  className="surface-card lift-hover px-5 py-6"
-                  style={{ transitionDelay: `${i * 20}ms` }}
-                >
-                  <p className="font-display text-3xl font-semibold text-gradient">
-                    <CountUp to={s.value} />
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">{s.label}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
+
 
           <Reveal delay={260}>
             <div className="glass-panel mt-10 flex flex-col gap-4 rounded-2xl px-6 py-6 sm:flex-row sm:items-center">
