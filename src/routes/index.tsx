@@ -137,6 +137,14 @@ function Home() {
             className="absolute -inset-6 -z-10 rounded-[3rem] opacity-50 blur-3xl"
             style={{ background: "var(--gradient-accent)", opacity: 0.14 }}
           />
+          <img
+            src={robotWave}
+            alt="Friendly robot waving hello"
+            width={768}
+            height={768}
+            loading="lazy"
+            className="robot-float pointer-events-none absolute -bottom-8 -left-6 w-28 drop-shadow-[0_18px_40px_var(--glow)] sm:w-36 lg:-left-10 lg:w-40"
+          />
         </div>
       </section>
 
