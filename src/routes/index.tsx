@@ -4,8 +4,7 @@ import { Ambient } from "@/components/site/Ambient";
 import { SplitText } from "@/components/site/AnimatedText";
 import { Typewriter } from "@/components/site/motion-bits";
 import { profile, RESUME_URL } from "@/lib/portfolio-data";
-import heroVisual from "@/assets/hero-visual.jpg";
-import robotWave from "@/assets/robot-wave.png";
+import heroAi from "@/assets/hero-ai.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -119,33 +118,20 @@ function Home() {
           className="relative min-w-0"
           style={{ animation: "rise-in .9s var(--ease-out-soft) both", animationDelay: "300ms" }}
         >
-          <div className="glass-panel relative aspect-square w-full overflow-hidden rounded-[2rem] sm:aspect-[4/3] lg:aspect-square">
-            <img
-              src={heroVisual}
-              alt="Abstract retro-futuristic 3D composition in aqua and violet"
-              width={1024}
-              height={1024}
-              className="h-full w-full object-cover"
-            />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-primary/20"
-            />
-          </div>
+          <img
+            src={heroAi}
+            alt="Glowing neural network forming a brain, representing machine learning and AI"
+            width={1024}
+            height={1024}
+            className="robot-float relative z-10 mx-auto w-full max-w-[560px] select-none object-contain opacity-95 mix-blend-screen"
+          />
           <div
             aria-hidden
-            className="absolute -inset-6 -z-10 rounded-[3rem] opacity-50 blur-3xl"
-            style={{ background: "var(--gradient-accent)", opacity: 0.14 }}
-          />
-          <img
-            src={robotWave}
-            alt="Friendly robot waving hello"
-            width={768}
-            height={768}
-            loading="lazy"
-            className="robot-float pointer-events-none absolute -bottom-8 -left-6 w-28 drop-shadow-[0_18px_40px_var(--glow)] sm:w-36 lg:-left-10 lg:w-40"
+            className="absolute inset-6 -z-10 rounded-full blur-[90px]"
+            style={{ background: "var(--gradient-accent)", opacity: 0.18 }}
           />
         </div>
+
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-12">
