@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Download } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
-import { profile, RESUME_URL } from "@/lib/portfolio-data";
+import { aboutHighlights, RESUME_URL } from "@/lib/portfolio-data";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
