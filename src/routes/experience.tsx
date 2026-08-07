@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Briefcase, ExternalLink, GraduationCap, MapPin } from "lucide-react";
+import { Briefcase, ExternalLink, GraduationCap, MapPin, Trophy } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
 import { timeline, CANTILEVER_LOGO } from "@/lib/portfolio-data";
