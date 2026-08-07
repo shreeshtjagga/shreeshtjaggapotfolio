@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Download } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
-import { profile, RESUME_URL } from "@/lib/portfolio-data";
+import { aboutHighlights, RESUME_URL } from "@/lib/portfolio-data";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -64,18 +64,12 @@ function About() {
         </Reveal>
 
         <div>
-          {profile.summary.split(". ").reduce<string[][]>((acc, s, i) => {
-            const idx = Math.floor(i / 2);
-            acc[idx] = [...(acc[idx] ?? []), s];
-            return acc;
-          }, []).map((chunk, i) => (
+          {aboutHighlights.map((line, i) => (
             <Reveal key={i} delay={i * 120} className="mb-5">
-              <p className="text-[15px] leading-[1.85] text-muted-foreground">
-                {chunk.join(". ")}
-                {chunk.join(". ").endsWith(".") ? "" : "."}
-              </p>
+              <p className="text-[15px] leading-[1.85] text-muted-foreground">{line}</p>
             </Reveal>
           ))}
+
 
 
 

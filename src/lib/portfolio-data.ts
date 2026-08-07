@@ -26,7 +26,7 @@ export const profile = {
   tagline:
     "Building high-performance backends, distributed data pipelines, and applied ML systems — from neural nets written from scratch to production AI platforms.",
   rotatingRoles: [
-    "Machine Learning Engineer in the making",
+    "Aspiring MLOps Engineer",
     "Backend & Data Pipeline Builder",
     "Applied NLP & Generative AI",
     "Final-year B.Tech, Data Science",
@@ -218,6 +218,12 @@ export const certifications = [
   },
 ] as const;
 
+export const aboutHighlights = [
+  "I'm a final-year Data Science undergrad who likes taking things apart until they make sense — then rebuilding them better.",
+  "Most of my work sits where machine learning meets real engineering: models that actually ship, backends that stay fast, and pipelines that don't fall over.",
+  "Outside the code, I'm the person who volunteers to lead the messy part — I've been tech lead on two award-winning sports-tech ideas and I like problems no one has cleanly solved yet.",
+];
+
 export const timeline = [
   {
     kind: "experience" as const,
@@ -231,6 +237,34 @@ export const timeline = [
       "Developed a real-time face & hand gesture recognition system using OpenCV and MediaPipe with a low-latency live webcam inference pipeline.",
       "Preprocessed a large volume of video frame data with Pandas and trained classification models using Scikit-learn, focused on runtime performance.",
       "Tested and validated model performance across multiple gesture classes and hand positions to guide feature/model improvements.",
+    ],
+  },
+  {
+    kind: "award" as const,
+    title: "1st Place — Eco-Vate Ideathon",
+    org: "Mahindra University",
+    period: "Apr 2025",
+    location: "Hyderabad",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7317777802953437185/",
+    linkLabel: "View announcement",
+    bullets: [
+      "Secured 1st place at the Eco-Vate Ideathon, a sustainability-focused competition hosted by Mahindra University.",
+      "Served as tech lead, presenting a low-cost, eco-friendly alternative to the Hawkeye system built for grassroots tennis and badminton.",
+      "Designed the solution around accessibility — accurate line-calling for rural and semi-urban venues without expensive infrastructure.",
+    ],
+  },
+  {
+    kind: "award" as const,
+    title: "Winner — Ideathon, Robotica 2.0",
+    org: "Robotics Club, Geethanjali College of Engineering and Technology",
+    period: "Dec 2024",
+    location: "Hyderabad",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7277580980637331456/",
+    linkLabel: "View announcement",
+    bullets: [
+      "Won Ideathon – Robotica 2.0 against 84 competing teams.",
+      "Acted as tech lead on a system to redefine judgment calls in tennis, badminton, and volleyball with higher accuracy at a far lower cost.",
+      "Recognised for the innovation and practicality of the prototype and its potential impact on fairness in sports officiating.",
     ],
   },
   {

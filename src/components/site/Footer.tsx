@@ -40,12 +40,11 @@ export function Footer() {
           {[
             { href: profile.linkedin, icon: Linkedin, label: "LinkedIn" },
             { href: profile.github, icon: Github, label: "GitHub" },
-            { href: `mailto:${profile.email}`, icon: Mail, label: "Email" },
           ].map(({ href, icon: Icon, label }) => (
             <a
               key={label}
               href={href}
-              target={href.startsWith("http") ? "_blank" : undefined}
+              target="_blank"
               rel="noreferrer"
               aria-label={label}
               className="grid h-10 w-10 place-items-center rounded-full border border-border/70 text-muted-foreground transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:text-primary hover:shadow-[0_0_22px_-6px_var(--glow)]"
@@ -53,6 +52,14 @@ export function Footer() {
               <Icon size={17} />
             </a>
           ))}
+          <Link
+            to="/contact"
+            aria-label="Email"
+            className="grid h-10 w-10 place-items-center rounded-full border border-border/70 text-muted-foreground transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:text-primary hover:shadow-[0_0_22px_-6px_var(--glow)]"
+          >
+            <Mail size={17} />
+          </Link>
+
         </div>
       </div>
 
