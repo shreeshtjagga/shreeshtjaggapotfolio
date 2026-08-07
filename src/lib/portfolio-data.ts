@@ -26,7 +26,7 @@ export const profile = {
   tagline:
     "Building high-performance backends, distributed data pipelines, and applied ML systems — from neural nets written from scratch to production AI platforms.",
   rotatingRoles: [
-    "Machine Learning Engineer in the making",
+    "Aspiring MLOps Engineer",
     "Backend & Data Pipeline Builder",
     "Applied NLP & Generative AI",
     "Final-year B.Tech, Data Science",
@@ -217,6 +217,12 @@ export const certifications = [
     image: certOracleSql.url,
   },
 ] as const;
+
+export const aboutHighlights = [
+  "I'm a final-year Data Science undergrad who likes taking things apart until they make sense — then rebuilding them better.",
+  "Most of my work sits where machine learning meets real engineering: models that actually ship, backends that stay fast, and pipelines that don't fall over.",
+  "Outside the code, I'm the person who volunteers to lead the messy part — I've been tech lead on two award-winning sports-tech ideas and I like problems no one has cleanly solved yet.",
+];
 
 export const timeline = [
   {
