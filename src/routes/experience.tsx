@@ -45,7 +45,12 @@ function Experience() {
         />
         <div className="space-y-10">
           {timeline.map((entry, i) => {
-            const Icon = entry.kind === "education" ? GraduationCap : Briefcase;
+            const Icon =
+              entry.kind === "education"
+                ? GraduationCap
+                : entry.kind === "award"
+                  ? Trophy
+                  : Briefcase;
             return (
               <Reveal key={entry.title} variant="slide-right" delay={i * 120}>
                 <div className="relative">
@@ -57,10 +62,15 @@ function Experience() {
                   <article className="surface-card lift-hover px-6 py-7 sm:px-8">
                     <div className="flex flex-wrap items-center gap-3">
                       <span className="rounded-full border border-primary/30 bg-primary/8 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-primary">
-                        {entry.kind === "education" ? "Education" : "Experience"}
+                        {entry.kind === "education"
+                          ? "Education"
+                          : entry.kind === "award"
+                            ? "Achievement"
+                            : "Experience"}
                       </span>
                       <span className="font-mono text-xs text-muted-foreground">{entry.period}</span>
                     </div>
+
 
                     <h2 className="mt-4 font-display text-xl font-semibold sm:text-2xl">
                       {entry.title}
