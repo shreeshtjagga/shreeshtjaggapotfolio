@@ -15,9 +15,9 @@ function SocialIcons({ size = 16 }: { size?: number }) {
       <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" className={base}>
         <Github size={size} />
       </a>
-      <a href={`mailto:${profile.email}`} aria-label="Email" className={base}>
+      <Link to="/contact" aria-label="Email" className={base}>
         <Mail size={size} />
-      </a>
+      </Link>
     </>
   );
 }
