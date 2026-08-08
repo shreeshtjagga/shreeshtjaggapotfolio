@@ -373,8 +373,20 @@
 /* Scroll reveal base states (driven by IntersectionObserver) */
 .reveal {
   opacity: 0;
-  will-change: transform, opacity;
+  /* Fail-safe: if JS is slow or blocked, content still becomes visible. */
+  animation: reveal-failsafe 0.4s var(--ease-out-soft) 3s forwards;
 }
+.reveal.is-visible {
+  animation: none;
+}
+@keyframes reveal-failsafe {
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
 .reveal[data-variant="rise"] {
   transform: translate3d(0, 26px, 0);
 }

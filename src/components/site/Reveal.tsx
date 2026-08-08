@@ -22,7 +22,10 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (typeof IntersectionObserver === "undefined") {
+    const reduced =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (reduced || typeof IntersectionObserver === "undefined") {
       setVisible(true);
       return;
     }
@@ -41,8 +44,14 @@ export function Reveal({
       { threshold: 0.06, rootMargin: "0px 0px -6% 0px" },
     );
     io.observe(el);
-    return () => io.disconnect();
+    // Safety net: never leave content invisible if the observer never fires.
+    const t = window.setTimeout(() => setVisible(true), 2500);
+    return () => {
+      window.clearTimeout(t);
+      io.disconnect();
+    };
   }, []);
+
 
   return (
     <Tag

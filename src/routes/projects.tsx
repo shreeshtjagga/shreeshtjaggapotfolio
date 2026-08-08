@@ -59,14 +59,7 @@ function Actions({ p, compact = false }: { p: Project; compact?: boolean }) {
         >
           <ExternalLink size={14} /> Live Demo
         </a>
-      ) : (
-        <span
-          className="inline-flex items-center gap-2 rounded-full border border-dashed border-border/80 px-4 py-2 font-mono text-[11px] text-muted-foreground"
-          title="Add the deployed URL here later"
-        >
-          [ADD LIVE DEMO LINK]
-        </span>
-      )}
+      ) : null}
       {!compact && (
         <span className="ml-auto font-mono text-[11px] text-muted-foreground/70">
           Click card for details

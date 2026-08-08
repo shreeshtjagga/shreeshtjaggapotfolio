@@ -4,7 +4,7 @@ import { Ambient } from "@/components/site/Ambient";
 import { SplitText } from "@/components/site/AnimatedText";
 import { Typewriter } from "@/components/site/motion-bits";
 import { profile, RESUME_URL } from "@/lib/portfolio-data";
-import heroAi from "@/assets/hero-ai.png";
+import heroMl from "@/assets/hero-ml.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -126,8 +126,8 @@ function Home() {
           style={{ animation: "rise-in .9s var(--ease-out-soft) both", animationDelay: "300ms" }}
         >
           <img
-            src={heroAi}
-            alt="Glowing neural network forming a brain, representing machine learning and AI"
+            src={heroMl}
+            alt="Glowing MLOps data pipeline loop representing machine learning engineering and data science"
             width={1024}
             height={1024}
             className="robot-float relative z-10 mx-auto w-full max-w-[560px] select-none object-contain opacity-95 mix-blend-screen"
