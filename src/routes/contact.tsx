@@ -86,11 +86,12 @@ function Contact() {
     setStatus("sending");
     const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
     const subject = encodeURIComponent(form.subject || `Message from ${form.name}`);
-    window.setTimeout(() => {
-      window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
-      setStatus("sent");
-    }, 650);
+    // Trigger the mail client synchronously inside the user gesture so browsers
+    // (especially mobile) don't block the navigation.
+    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+    setStatus("sent");
   };
+
 
   return (
     <PageShell
