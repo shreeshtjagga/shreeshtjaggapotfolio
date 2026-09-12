@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { AlertCircle, Check, CheckCircle2, Copy, Github, Linkedin, Loader2, Mail, MapPin, Send, Sparkles } from "lucide-react";
+import { AlertCircle, Check, CheckCircle2, Clock, Copy, Github, Linkedin, Loader2, Mail, MapPin, Send, ShieldCheck, Sparkles } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
 import { profile, WEB3FORMS_ACCESS_KEY } from "@/lib/portfolio-data";
 import { cn } from "@/lib/utils";
+
+const RATE_LIMIT_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -31,6 +33,7 @@ function Field({
   type = "text",
   textarea = false,
   value,
+  disabled = false,
   onChange,
 }: {
   id: string;
@@ -38,10 +41,11 @@ function Field({
   type?: string;
   textarea?: boolean;
   value: string;
+  disabled?: boolean;
   onChange: (v: string) => void;
 }) {
   const shared =
-    "peer w-full rounded-xl border border-border/80 bg-surface/50 px-4 pt-6 pb-2.5 text-sm text-foreground outline-none transition-all duration-300 placeholder-transparent focus:border-primary/60 focus:shadow-[0_0_24px_-8px_var(--glow)]";
+    "peer w-full rounded-xl border border-border/80 bg-surface/50 px-4 pt-6 pb-2.5 text-sm text-foreground outline-none transition-all duration-300 placeholder-transparent focus:border-primary/60 focus:shadow-[0_0_24px_-8px_var(--glow)] disabled:opacity-50 disabled:cursor-not-allowed";
   return (
     <div className="relative">
       {textarea ? (
@@ -49,6 +53,7 @@ function Field({
           id={id}
           rows={5}
           required
+          disabled={disabled}
           placeholder={label}
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -59,6 +64,7 @@ function Field({
           id={id}
           type={type}
           required
+          disabled={disabled}
           placeholder={label}
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -76,10 +82,35 @@ function Field({
 }
 
 function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "", honeypot: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [copied, setCopied] = useState(false);
+  const [rateLimitedUntil, setRateLimitedUntil] = useState<number | null>(null);
+
+  useEffect(() => {
+    try {
+      const lastSent = localStorage.getItem("contact_form_last_sent");
+      if (lastSent) {
+        const lastSentTime = parseInt(lastSent, 10);
+        const timeElapsed = Date.now() - lastSentTime;
+        if (timeElapsed < RATE_LIMIT_MS) {
+          setRateLimitedUntil(lastSentTime + RATE_LIMIT_MS);
+        }
+      }
+    } catch {
+      // localStorage unavailable or private browsing
+    }
+  }, []);
+
+  const getRemainingTime = () => {
+    if (!rateLimitedUntil) return "";
+    const remainingMs = Math.max(0, rateLimitedUntil - Date.now());
+    const hours = Math.floor(remainingMs / (1000 * 60 * 60));
+    const minutes = Math.ceil((remainingMs % (1000 * 60 * 60)) / (1000 * 60));
+    if (hours > 0) return `${hours} hr ${minutes} min`;
+    return `${minutes} min`;
+  };
 
   const set = (k: keyof typeof form) => (v: string) => setForm((f) => ({ ...f, [k]: v }));
 
@@ -96,10 +127,27 @@ function Contact() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check honeypot (bot protection)
+    if (form.honeypot) {
+      // Bot filled hidden field; pretend success without calling API
+      setStatus("sent");
+      return;
+    }
+
+    // Check 24-hour rate limit
+    if (rateLimitedUntil && Date.now() < rateLimitedUntil) {
+      setStatus("error");
+      setErrorMessage(
+        `Rate limit active: You can send 1 message every 24 hours to prevent spam. Available again in ${getRemainingTime()}.`
+      );
+      return;
+    }
+
     setStatus("sending");
     setErrorMessage("");
 
-    // If a valid Web3Forms key is not yet replaced, fallback gracefully to mail client
+    // Fallback if key is missing
     if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === "YOUR_ACCESS_KEY_HERE") {
       const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
       const subject = encodeURIComponent(form.subject || `Portfolio Contact from ${form.name}`);
@@ -122,13 +170,21 @@ function Contact() {
           subject: form.subject || `New Portfolio Message from ${form.name}`,
           message: form.message,
           from_name: form.name,
+          botcheck: false,
         }),
       });
 
       const data = await response.json();
       if (data.success) {
+        const now = Date.now();
+        try {
+          localStorage.setItem("contact_form_last_sent", String(now));
+        } catch {
+          // ignore
+        }
+        setRateLimitedUntil(now + RATE_LIMIT_MS);
         setStatus("sent");
-        setForm({ name: "", email: "", subject: "", message: "" });
+        setForm({ name: "", email: "", subject: "", message: "", honeypot: "" });
       } else {
         setStatus("error");
         setErrorMessage(data.message || "Unable to send message. Please copy my email directly.");
@@ -139,11 +195,7 @@ function Contact() {
     }
   };
 
-  const resetForm = () => {
-    setForm({ name: "", email: "", subject: "", message: "" });
-    setStatus("idle");
-    setErrorMessage("");
-  };
+  const isLocked = Boolean(rateLimitedUntil && Date.now() < rateLimitedUntil);
 
   return (
     <PageShell
@@ -158,7 +210,7 @@ function Contact() {
             <div className="mb-6 flex items-center justify-between">
               <div>
                 <h2 className="font-display text-lg font-semibold sm:text-xl">Send a Message</h2>
-                <p className="mt-1 text-xs text-muted-foreground">Delivered directly to my inbox within 24 hours</p>
+                <p className="mt-1 text-xs text-muted-foreground">Delivered directly to my inbox (1 message / 24h)</p>
               </div>
               <span className="grid h-10 w-10 place-items-center rounded-xl border border-primary/30 bg-primary/8 text-primary shadow-[0_0_16px_-6px_var(--glow)]">
                 <Sparkles size={18} />
@@ -175,9 +227,15 @@ function Contact() {
                 </div>
                 <h3 className="font-display text-xl font-semibold">Message Sent Successfully!</h3>
                 <p className="mx-auto max-w-sm text-xs sm:text-sm text-muted-foreground">
-                  Thank you for reaching out! Your message has been sent to Shreesht's email. You will receive a response shortly.
+                  Thank you for reaching out! Your message has been sent to Shreesht's inbox. You will receive a response shortly.
                 </p>
-                <div className="pt-4 flex flex-wrap justify-center gap-3">
+                <div className="mx-auto max-w-sm rounded-xl border border-primary/20 bg-primary/5 p-3 text-xs text-muted-foreground">
+                  <span className="flex items-center justify-center gap-1.5 font-medium text-primary">
+                    <ShieldCheck size={14} /> Spam Protection Active
+                  </span>
+                  <span className="mt-1 block">To prevent automated spam, new form submissions are limited to 1 per 24 hours.</span>
+                </div>
+                <div className="pt-2 flex flex-wrap justify-center gap-3">
                   <button
                     type="button"
                     onClick={copyEmail}
@@ -186,17 +244,23 @@ function Contact() {
                     {copied ? <Check size={16} /> : <Copy size={16} />}
                     {copied ? "Email Copied!" : "Copy Email Address"}
                   </button>
-                  <button
-                    type="button"
-                    onClick={resetForm}
-                    className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-xs sm:text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:border-primary/40"
-                  >
-                    Send Another Message
-                  </button>
                 </div>
               </div>
             ) : (
               <form onSubmit={onSubmit} className="space-y-4 sm:space-y-5">
+                {/* 24-hour rate limit notice */}
+                {isLocked && (
+                  <div className="flex items-start gap-3 rounded-2xl border border-primary/35 bg-primary/8 p-4 text-xs text-foreground/90">
+                    <Clock size={18} className="mt-0.5 shrink-0 text-primary" />
+                    <div>
+                      <p className="font-semibold text-primary">Message Limit Active (1 per 24 hours)</p>
+                      <p className="mt-0.5 text-muted-foreground">
+                        You've recently sent a message. Form submissions will unlock again in <strong className="text-foreground">{getRemainingTime()}</strong>. For urgent matters, please use the direct email button below.
+                      </p>
+                    </div>
+                  </div>
+                )}
+
                 {status === "error" && (
                   <div className="flex items-center gap-2.5 rounded-xl border border-destructive/40 bg-destructive/10 p-3 text-xs text-destructive-foreground">
                     <AlertCircle size={16} className="shrink-0 text-destructive" />
@@ -204,23 +268,40 @@ function Contact() {
                   </div>
                 )}
 
+                {/* Honeypot hidden input for bot protection */}
+                <input
+                  type="text"
+                  name="honeypot"
+                  value={form.honeypot}
+                  onChange={(e) => set("honeypot")(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden"
+                  style={{ display: "none" }}
+                />
+
                 <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
-                  <Field id="name" label="Your Name" value={form.name} onChange={set("name")} />
-                  <Field id="email" label="Your Email" type="email" value={form.email} onChange={set("email")} />
+                  <Field id="name" label="Your Name" value={form.name} disabled={isLocked} onChange={set("name")} />
+                  <Field id="email" label="Your Email" type="email" value={form.email} disabled={isLocked} onChange={set("email")} />
                 </div>
-                <Field id="subject" label="Subject / Role" value={form.subject} onChange={set("subject")} />
-                <Field id="message" label="Your Message" textarea value={form.message} onChange={set("message")} />
+                <Field id="subject" label="Subject / Role" value={form.subject} disabled={isLocked} onChange={set("subject")} />
+                <Field id="message" label="Your Message" textarea value={form.message} disabled={isLocked} onChange={set("message")} />
 
                 <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
                   <button
                     type="submit"
-                    disabled={status === "sending"}
-                    className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-accent)] px-5 py-2.5 text-xs sm:text-sm font-semibold text-primary-foreground shadow-[0_8px_24px_-6px_var(--glow)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-10px_var(--glow)] disabled:opacity-70 sm:px-6 sm:py-3"
+                    disabled={status === "sending" || isLocked}
+                    className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-accent)] px-5 py-2.5 text-xs sm:text-sm font-semibold text-primary-foreground shadow-[0_8px_24px_-6px_var(--glow)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-10px_var(--glow)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 sm:px-6 sm:py-3"
                   >
                     {status === "sending" ? (
                       <>
                         <Loader2 size={15} className="animate-spin" />
                         <span>Sending…</span>
+                      </>
+                    ) : isLocked ? (
+                      <>
+                        <Clock size={15} />
+                        <span>Locked (1 / 24h)</span>
                       </>
                     ) : (
                       <>
