@@ -5,7 +5,6 @@ import {
   Brain,
   Cloud,
   Database,
-  Languages,
   Wrench,
   type LucideIcon,
 } from "lucide-react";
@@ -16,13 +15,13 @@ import { skillGroups } from "@/lib/portfolio-data";
 export const Route = createFileRoute("/skills")({
   head: () => ({
     meta: [
-      { title: "Skills — Shreesht Jagga" },
+      { title: "Skills | Shreesht Jagga" },
       {
         name: "description",
         content:
           "Technical toolkit: Python, R, SQL, PyTorch, Scikit-learn, FastAPI, LangGraph, PostgreSQL, Redis, ChromaDB, AWS and more.",
       },
-      { property: "og:title", content: "Skills — Shreesht Jagga" },
+      { property: "og:title", content: "Skills | Shreesht Jagga" },
       {
         property: "og:description",
         content: "Languages, ML/AI, frameworks, data infrastructure, cloud, and tools.",
@@ -42,11 +41,10 @@ const icons: Record<string, LucideIcon> = {
   "Data & Infrastructure": Database,
   "Cloud & Deployment": Cloud,
   Tools: Wrench,
-  "Spoken Languages": Languages,
 };
 
 function initials(label: string) {
-  const clean = label.split("—")[0]!.trim();
+  const clean = label.replace(/[—–-]/g, " ").trim();
   const words = clean.split(/[\s-]+/).filter(Boolean);
   if (words.length === 1) return clean.slice(0, 2).toUpperCase();
   return words
@@ -61,7 +59,7 @@ function Skills() {
     <PageShell
       eyebrow="Skills"
       title="The toolkit behind the work."
-      intro="Grouped by where they live in the stack — from writing models by hand to shipping them on infrastructure that stays up."
+      intro="Grouped by where they live in the stack, from writing models by hand to shipping them on infrastructure that stays up."
       tone="violet"
     >
       <div className="space-y-6 sm:space-y-8 pb-6">

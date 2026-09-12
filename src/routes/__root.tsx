@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  ScrollRestoration,
 } from "@tanstack/react-router";
 import { type ReactNode } from "react";
 
@@ -76,23 +77,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Shreesht Jagga Portfolio" },
+      { title: "Shreesht Jagga | Portfolio" },
       {
         name: "description",
         content:
-          "Portfolio of Shreesht Jagga — B.Tech Data Science student building applied ML systems, high-performance backends, and agentic AI platforms.",
+          "Portfolio of Shreesht Jagga, B.Tech Data Science student building applied ML systems, high-performance backends, and agentic AI platforms.",
       },
       { name: "author", content: "Shreesht Jagga" },
       { property: "og:site_name", content: "Shreesht Jagga" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#14161f" },
-      { property: "og:title", content: "Shreesht Jagga Portfolio" },
-      { name: "twitter:title", content: "Shreesht Jagga Portfolio" },
-      { property: "og:description", content: "Portfolio of Shreesht Jagga — B.Tech Data Science student building applied ML systems, high-performance backends, and agentic AI platforms." },
-      { name: "twitter:description", content: "Portfolio of Shreesht Jagga — B.Tech Data Science student building applied ML systems, high-performance backends, and agentic AI platforms." },
-      { property: "og:image", content: "/avatar.svg" },
-      { name: "twitter:image", content: "/avatar.svg" },
+      { property: "og:title", content: "Shreesht Jagga | Portfolio" },
+      { name: "twitter:title", content: "Shreesht Jagga | Portfolio" },
+      { property: "og:description", content: "Portfolio of Shreesht Jagga, B.Tech Data Science student building applied ML systems, high-performance backends, and agentic AI platforms." },
+      { name: "twitter:description", content: "Portfolio of Shreesht Jagga, B.Tech Data Science student building applied ML systems, high-performance backends, and agentic AI platforms." },
+      { property: "og:image", content: "/avatar.png" },
+      { name: "twitter:image", content: "/avatar.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -147,6 +148,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <ScrollRestoration />
       <LoadingBar />
       <a
         href="#content"

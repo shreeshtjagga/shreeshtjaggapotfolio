@@ -24,7 +24,10 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    setOpen(false);
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -34,7 +37,11 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
     return () => {
       document.body.style.overflow = "";
     };
@@ -57,6 +64,10 @@ export function Header() {
       >
         <Link
           to="/"
+          onClick={() => {
+            setOpen(false);
+            window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+          }}
           className="group flex min-w-0 items-center gap-2.5 font-display text-sm font-semibold tracking-tight"
         >
           <span className="relative grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-primary/40 bg-primary/8 text-primary transition-transform duration-500 group-hover:rotate-6">
@@ -116,15 +127,19 @@ export function Header() {
       {/* Mobile overlay */}
       <div
         className={cn(
-          "fixed inset-0 z-40 origin-top bg-background/98 backdrop-blur-2xl transition-all duration-400 xl:hidden",
-          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
+          "fixed inset-0 z-40 bg-background/98 backdrop-blur-2xl transition-all duration-300 xl:hidden overflow-y-auto pt-24 pb-12",
+          open ? "pointer-events-auto opacity-100 visible" : "pointer-events-none opacity-0 invisible",
         )}
       >
-        <nav className="flex h-full flex-col justify-center gap-1 px-8 max-w-md mx-auto" aria-label="Mobile">
+        <nav className="flex min-h-[calc(100vh-9rem)] flex-col justify-center gap-1 px-8 max-w-md mx-auto" aria-label="Mobile">
           {navLinks.map((l, i) => (
             <Link
               key={l.to}
               to={l.to}
+              onClick={() => {
+                setOpen(false);
+                window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+              }}
               className={cn(
                 "border-b border-border/40 py-3.5 font-display text-xl sm:text-2xl transition-colors",
                 pathname === l.to ? "text-primary font-semibold" : "text-foreground/80 hover:text-primary",

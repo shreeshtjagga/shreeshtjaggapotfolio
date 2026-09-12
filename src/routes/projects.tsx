@@ -9,13 +9,13 @@ import { projects, type Project } from "@/lib/portfolio-data";
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Projects — Shreesht Jagga" },
+      { title: "Projects | Shreesht Jagga" },
       {
         name: "description",
         content:
           "Selected work: ReqSense AI requirements platform, DataPulse agentic analysis, NSE stock signal model, stress predictor, and an alpha-beta chess engine.",
       },
-      { property: "og:title", content: "Projects — Shreesht Jagga" },
+      { property: "og:title", content: "Projects | Shreesht Jagga" },
       {
         property: "og:description",
         content: "ReqSense AI, DataPulse, NSE Stock Predictor, Stress Level Predictor, Chess AI.",
@@ -78,7 +78,7 @@ function Projects() {
     <PageShell
       eyebrow="Projects"
       title="Systems I designed, built, and shipped."
-      intro="Each one started as a question about how something works — and ended as a running service."
+      intro="Each project started with curiosity about how something works and turned into a running service."
       tone="mixed"
     >
       <Reveal variant="scale">

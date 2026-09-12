@@ -1,6 +1,7 @@
 export const RESUME_URL = "https://drive.google.com/file/d/1w5xGRVasxo62UNW9ftwBNE9ap9Dt964g/view?usp=sharing";
 export const CREDLY_URL = "https://www.credly.com/users/shreeshtjagga/badges/credly";
 export const CANTILEVER_LOGO = "/logos/cantilever.svg";
+export const WEB3FORMS_ACCESS_KEY = "8f8df4ac-132c-472d-94f7-2af8dbf2bee5";
 
 
 export const profile = {
@@ -14,7 +15,7 @@ export const profile = {
   summary:
     "Final-year Data Science undergraduate with strong expertise in applied machine learning, distributed data pipelines, and high-performance backend systems. Experienced in architecting full-stack AI platforms with FastAPI, PostgreSQL, Redis, LangGraph, and Groq LLM. Seeking Software Engineering, MLOps, and ML roles applying these skills to production systems.",
   tagline:
-    "Building high-performance backends, distributed data pipelines, and production-ready machine learning systems — from quantitative models to multi-agent AI platforms.",
+    "Building high-performance backends, distributed data pipelines, and production-ready machine learning systems, from quantitative models to multi-agent AI platforms.",
   rotatingRoles: [
     "Aspiring MLOps Engineer",
     "Backend & Data Pipeline Builder",
@@ -73,10 +74,6 @@ export const skillGroups = [
     title: "Tools",
     items: ["Git", "GitHub", "Jupyter", "VS Code", "OpenCV", "MediaPipe", "Groq LLM"],
   },
-  {
-    title: "Spoken Languages",
-    items: ["English — Professional", "Telugu — Native / Bilingual", "Hindi — Professional"],
-  },
 ] as const;
 
 export type Project = {
@@ -118,7 +115,7 @@ export const projects: Project[] = [
   },
   {
     slug: "datapulse",
-    title: "DataPulse — Agentic AI Data Analysis & Research Platform",
+    title: "DataPulse: Agentic AI Data Analysis & Research Platform",
     oneLiner:
       "A four-agent system that runs automated statistical, ML, and RAG-based analysis over large JSON/CSV datasets.",
     tags: ["LangGraph", "Groq LLM", "ChromaDB", "FastAPI", "Redis", "JWT"],
@@ -132,7 +129,7 @@ export const projects: Project[] = [
   },
   {
     slug: "nse-predictor",
-    title: "Quantitative Trading Signal Model — NSE Stock Predictor",
+    title: "Quantitative Trading Signal Model (NSE Stock Predictor)",
     oneLiner:
       "A quantitative model predicting next-day NSE stock direction with 78% accuracy using an XGBoost classifier.",
     tags: ["XGBoost", "Time Series", "Feature Engineering", "Streamlit", "Pandas"],
@@ -222,10 +219,10 @@ export const certifications = [
 ];
 
 export const aboutHighlights = [
-  "I'm a final-year Data Science undergraduate focused on practical, high-impact machine learning and robust software engineering.",
-  "My expertise centers on building real-world ML systems and resilient backends: automated data analysis pipelines, agentic workflows, API architectures, and quantitative prediction models that hold up under load.",
-  "I specialize in the end-to-end lifecycle — from data preprocessing and feature engineering to deployment with FastAPI, Redis, PostgreSQL, and cloud infrastructure.",
-  "Outside pure coding, I've served as tech lead on award-winning hackathon and ideathon projects, enjoying the challenge of transforming complex data into working, accessible software.",
+  "I am a final-year Data Science undergraduate with a deep focus on practical machine learning and resilient software engineering.",
+  "My work centers on building real-world ML systems and dependable backends: automated data analysis pipelines, agentic workflows, API architectures, and quantitative prediction models that hold up under load.",
+  "I enjoy handling the end-to-end lifecycle, from data preprocessing and feature engineering to deployment with FastAPI, Redis, PostgreSQL, and cloud platforms.",
+  "Beyond solo development, I have led teams to wins in hackathons and ideathons, and I love turning complex data into intuitive, accessible software.",
 ];
 
 export const timeline = [
@@ -233,19 +230,19 @@ export const timeline = [
     kind: "experience" as const,
     title: "Machine Learning Intern",
     org: "Cantilever Labs",
-    period: "Apr 2025 – Jun 2025",
+    period: "Apr 2025 - Jun 2025",
     location: "Hyderabad",
     link: "https://github.com/shreeshtjagga/Face-Hand-Gesture-Recognition",
     linkLabel: "Project Repository",
     bullets: [
-      "Developed a real-time face & hand gesture recognition system using OpenCV and MediaPipe with a low-latency live webcam inference pipeline.",
+      "Developed a real-time face and hand gesture recognition system using OpenCV and MediaPipe with a low-latency live webcam inference pipeline.",
       "Preprocessed a large volume of video frame data with Pandas and trained classification models using Scikit-learn, focused on runtime performance.",
       "Tested and validated model performance across multiple gesture classes and hand positions to guide feature/model improvements.",
     ],
   },
   {
     kind: "award" as const,
-    title: "1st Place — Eco-Vate Ideathon",
+    title: "1st Place, Eco-Vate Ideathon",
     org: "Mahindra University",
     period: "Apr 2025",
     location: "Hyderabad",
@@ -254,19 +251,19 @@ export const timeline = [
     bullets: [
       "Secured 1st place at the Eco-Vate Ideathon, a sustainability-focused competition hosted by Mahindra University.",
       "Served as tech lead, presenting a low-cost, eco-friendly alternative to the Hawkeye system built for grassroots tennis and badminton.",
-      "Designed the solution around accessibility — accurate line-calling for rural and semi-urban venues without expensive infrastructure.",
+      "Designed the solution around accessibility, delivering accurate line-calling for rural and semi-urban venues without expensive infrastructure.",
     ],
   },
   {
     kind: "award" as const,
-    title: "Winner — Ideathon, Robotica 2.0",
+    title: "Winner, Ideathon, Robotica 2.0",
     org: "Robotics Club, Geethanjali College of Engineering and Technology",
     period: "Dec 2024",
     location: "Hyderabad",
     link: "https://www.linkedin.com/feed/update/urn:li:activity:7277580980637331456/",
     linkLabel: "View announcement",
     bullets: [
-      "Won Ideathon – Robotica 2.0 against 84 competing teams.",
+      "Won Ideathon: Robotica 2.0 against 84 competing teams.",
       "Acted as tech lead on a system to redefine judgment calls in tennis, badminton, and volleyball with higher accuracy at a far lower cost.",
       "Recognised for the innovation and practicality of the prototype and its potential impact on fairness in sports officiating.",
     ],
@@ -275,12 +272,12 @@ export const timeline = [
     kind: "education" as const,
     title: "B.Tech in Data Science",
     org: "Geethanjali College of Engineering and Technology",
-    period: "2023 – 2027",
+    period: "2023 - 2027",
     location: "Hyderabad",
     link: null,
     linkLabel: null,
     bullets: [
-      "Coursework across algorithms, probability & statistics, machine learning, and database systems.",
+      "Coursework across algorithms, probability and statistics, machine learning, and database systems.",
       "From-scratch implementations of neural networks, ensemble methods, Bayesian Networks, and HMMs.",
     ],
   },

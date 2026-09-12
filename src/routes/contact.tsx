@@ -1,21 +1,21 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Check, CheckCircle2, Copy, Github, Linkedin, Mail, MapPin, Send, Sparkles } from "lucide-react";
+import { AlertCircle, Check, CheckCircle2, Copy, Github, Linkedin, Loader2, Mail, MapPin, Send, Sparkles } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
-import { profile } from "@/lib/portfolio-data";
+import { profile, WEB3FORMS_ACCESS_KEY } from "@/lib/portfolio-data";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Shreesht Jagga" },
+      { title: "Contact | Shreesht Jagga" },
       {
         name: "description",
         content:
           "Get in touch with Shreesht Jagga about software engineering and machine learning roles, collaborations, or research projects.",
       },
-      { property: "og:title", content: "Contact — Shreesht Jagga" },
+      { property: "og:title", content: "Contact | Shreesht Jagga" },
       { property: "og:description", content: "Reach out by email, LinkedIn, or GitHub." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/contact" },
@@ -77,7 +77,8 @@ function Field({
 
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
   const [copied, setCopied] = useState(false);
 
   const set = (k: keyof typeof form) => (v: string) => setForm((f) => ({ ...f, [k]: v }));
@@ -96,18 +97,52 @@ function Contact() {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
-    const subject = encodeURIComponent(form.subject || `Portfolio Contact from ${form.name}`);
-    
-    setTimeout(() => {
+    setErrorMessage("");
+
+    // If a valid Web3Forms key is not yet replaced, fallback gracefully to mail client
+    if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === "YOUR_ACCESS_KEY_HERE") {
+      const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
+      const subject = encodeURIComponent(form.subject || `Portfolio Contact from ${form.name}`);
       window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
       setStatus("sent");
-    }, 450);
+      return;
+    }
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: form.name,
+          email: form.email,
+          subject: form.subject || `New Portfolio Message from ${form.name}`,
+          message: form.message,
+          from_name: form.name,
+        }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setStatus("sent");
+        setForm({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setStatus("error");
+        setErrorMessage(data.message || "Unable to send message. Please copy my email directly.");
+      }
+    } catch {
+      setStatus("error");
+      setErrorMessage("Network error sending message. Please send an email directly.");
+    }
   };
 
   const resetForm = () => {
     setForm({ name: "", email: "", subject: "", message: "" });
     setStatus("idle");
+    setErrorMessage("");
   };
 
   return (
@@ -123,7 +158,7 @@ function Contact() {
             <div className="mb-6 flex items-center justify-between">
               <div>
                 <h2 className="font-display text-lg font-semibold sm:text-xl">Send a Message</h2>
-                <p className="mt-1 text-xs text-muted-foreground">Direct response typically within 24 hours</p>
+                <p className="mt-1 text-xs text-muted-foreground">Delivered directly to my inbox within 24 hours</p>
               </div>
               <span className="grid h-10 w-10 place-items-center rounded-xl border border-primary/30 bg-primary/8 text-primary shadow-[0_0_16px_-6px_var(--glow)]">
                 <Sparkles size={18} />
@@ -138,9 +173,9 @@ function Contact() {
                 <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary/15 text-primary shadow-[0_0_24px_-6px_var(--glow)]">
                   <CheckCircle2 size={30} />
                 </div>
-                <h3 className="font-display text-xl font-semibold">Message Ready &amp; Sent!</h3>
+                <h3 className="font-display text-xl font-semibold">Message Sent Successfully!</h3>
                 <p className="mx-auto max-w-sm text-xs sm:text-sm text-muted-foreground">
-                  Your mail client has been launched with your message. You can also copy my email directly if you prefer writing from your webmail.
+                  Thank you for reaching out! Your message has been sent to Shreesht's email. You will receive a response shortly.
                 </p>
                 <div className="pt-4 flex flex-wrap justify-center gap-3">
                   <button
@@ -162,6 +197,13 @@ function Contact() {
               </div>
             ) : (
               <form onSubmit={onSubmit} className="space-y-4 sm:space-y-5">
+                {status === "error" && (
+                  <div className="flex items-center gap-2.5 rounded-xl border border-destructive/40 bg-destructive/10 p-3 text-xs text-destructive-foreground">
+                    <AlertCircle size={16} className="shrink-0 text-destructive" />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
                 <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
                   <Field id="name" label="Your Name" value={form.name} onChange={set("name")} />
                   <Field id="email" label="Your Email" type="email" value={form.email} onChange={set("email")} />
@@ -175,8 +217,17 @@ function Contact() {
                     disabled={status === "sending"}
                     className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-accent)] px-5 py-2.5 text-xs sm:text-sm font-semibold text-primary-foreground shadow-[0_8px_24px_-6px_var(--glow)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-10px_var(--glow)] disabled:opacity-70 sm:px-6 sm:py-3"
                   >
-                    {status === "sending" ? "Preparing…" : "Send Message"}
-                    <Send size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
+                    {status === "sending" ? (
+                      <>
+                        <Loader2 size={15} className="animate-spin" />
+                        <span>Sending…</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <Send size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
+                      </>
+                    )}
                   </button>
 
                   <button

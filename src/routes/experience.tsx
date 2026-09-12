@@ -7,13 +7,13 @@ import { timeline, CANTILEVER_LOGO } from "@/lib/portfolio-data";
 export const Route = createFileRoute("/experience")({
   head: () => ({
     meta: [
-      { title: "Education & Experience — Shreesht Jagga" },
+      { title: "Education & Experience | Shreesht Jagga" },
       {
         name: "description",
         content:
           "B.Tech in Data Science at Geethanjali College of Engineering and Technology, and a machine learning internship at Cantilever Labs.",
       },
-      { property: "og:title", content: "Education & Experience — Shreesht Jagga" },
+      { property: "og:title", content: "Education & Experience | Shreesht Jagga" },
       {
         property: "og:description",
         content: "Timeline of study and applied machine learning work.",

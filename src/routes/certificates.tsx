@@ -7,13 +7,13 @@ import { certifications, CREDLY_URL } from "@/lib/portfolio-data";
 export const Route = createFileRoute("/certificates")({
   head: () => ({
     meta: [
-      { title: "Certificates — Shreesht Jagga" },
+      { title: "Certificates | Shreesht Jagga" },
       {
         name: "description",
         content:
           "Certifications from AWS, Red Hat, Cisco Networking Academy, and Oracle Academy in generative AI, cloud workflows, Python, and databases.",
       },
-      { property: "og:title", content: "Certificates — Shreesht Jagga" },
+      { property: "og:title", content: "Certificates | Shreesht Jagga" },
       {
         property: "og:description",
         content: "AWS Generative AI, Red Hat OpenShift AI, Cisco Python Essentials, Oracle Academy credentials.",

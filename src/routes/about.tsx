@@ -7,13 +7,13 @@ import { aboutHighlights } from "@/lib/portfolio-data";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Shreesht Jagga" },
+      { title: "About | Shreesht Jagga" },
       {
         name: "description",
         content:
           "About Shreesht Jagga: final-year Data Science undergraduate building applied machine learning systems, data pipelines, and backend architectures.",
       },
-      { property: "og:title", content: "About — Shreesht Jagga" },
+      { property: "og:title", content: "About | Shreesht Jagga" },
       {
         property: "og:description",
         content: "Background, expertise, and focus areas of Shreesht Jagga.",
@@ -30,8 +30,8 @@ function About() {
   return (
     <PageShell
       eyebrow="About"
-      title="Applied machine learning meets dependable engineering."
-      intro="I specialize in building production-ready data pipelines, agentic AI platforms, and high-performance backend systems designed for reliability and scale."
+      title="Hi, I'm Shreesht."
+      intro="I'm a Data Science student passionate about building reliable software, thoughtful machine learning systems, and backend platforms that solve real problems."
       tone="aqua"
     >
       <div className="grid gap-8 sm:gap-10 lg:grid-cols-[280px_1fr] xl:grid-cols-[320px_1fr]">
@@ -39,8 +39,8 @@ function About() {
           <div className="relative group mx-auto w-full max-w-[260px] sm:max-w-[300px] lg:max-w-none">
             <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-primary/30 bg-surface/60 shadow-[var(--shadow-soft)] transition-all duration-500 group-hover:border-primary/60 group-hover:shadow-[var(--shadow-glow)]">
               <img
-                src="/avatar.svg"
-                alt="Shreesht Jagga — Profile Portrait"
+                src="/avatar.png"
+                alt="Shreesht Jagga Profile Portrait"
                 className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).src = "/avatar.svg";
