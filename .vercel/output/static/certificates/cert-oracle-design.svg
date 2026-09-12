@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#140f10" />
+      <stop offset="100%" stop-color="#241517" />
+    </linearGradient>
+    <linearGradient id="oracleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F80000" />
+      <stop offset="100%" stop-color="#ff6b6b" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="520" rx="24" fill="url(#bgGrad)" stroke="#F80000" stroke-width="2" stroke-opacity="0.4" />
+  <rect x="24" y="24" width="752" height="472" rx="16" fill="none" stroke="#F80000" stroke-width="1" stroke-dasharray="8,6" stroke-opacity="0.3" />
+  <rect x="34" y="34" width="732" height="452" rx="12" fill="none" stroke="#ff8787" stroke-width="1" stroke-opacity="0.2" />
+
+  <path d="M 44 64 L 44 44 L 64 44" fill="none" stroke="url(#oracleGrad)" stroke-width="3" />
+  <path d="M 756 64 L 756 44 L 736 44" fill="none" stroke="url(#oracleGrad)" stroke-width="3" />
+  <path d="M 44 456 L 44 476 L 64 476" fill="none" stroke="url(#oracleGrad)" stroke-width="3" />
+  <path d="M 756 456 L 756 476 L 736 476" fill="none" stroke="url(#oracleGrad)" stroke-width="3" />
+
+  <g transform="translate(70, 75)">
+    <rect x="0" y="8" width="40" height="26" rx="13" fill="none" stroke="#F80000" stroke-width="5" />
+    <text x="56" y="24" font-family="'Sora', sans-serif" font-weight="700" font-size="20" fill="#FFFFFF" letter-spacing="3">ORACLE ACADEMY</text>
+    <text x="56" y="44" font-family="'DM Sans', sans-serif" font-weight="500" font-size="14" fill="#94a3b8" letter-spacing="1">AWARD OF COURSE COMPLETION</text>
+  </g>
+
+  <text x="400" y="200" font-family="'DM Sans', sans-serif" font-weight="500" font-size="16" fill="#94a3b8" text-anchor="middle" letter-spacing="2">THIS CERTIFIES THAT</text>
+  <text x="400" y="250" font-family="'Sora', sans-serif" font-weight="800" font-size="34" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">Shreesht Jagga</text>
+  <text x="400" y="295" font-family="'DM Sans', sans-serif" font-weight="400" font-size="16" fill="#94a3b8" text-anchor="middle">has successfully completed the coursework for</text>
+  
+  <text x="400" y="345" font-family="'Sora', sans-serif" font-weight="700" font-size="26" fill="url(#oracleGrad)" text-anchor="middle">Database Design</text>
+  <text x="400" y="375" font-family="'DM Sans', sans-serif" font-weight="500" font-size="14" fill="#fca5a5" text-anchor="middle" letter-spacing="1">Relational Modeling, ERDs, Normalization &amp; Schema Design</text>
+
+  <line x1="120" y1="425" x2="680" y2="425" stroke="#451a1d" stroke-width="1" />
+  
+  <text x="120" y="455" font-family="'JetBrains Mono', monospace" font-size="12" fill="#64748b">ISSUER: Oracle Academy</text>
+  <text x="400" y="455" font-family="'JetBrains Mono', monospace" font-size="12" fill="#64748b" text-anchor="middle">VERIFIABLE: Oracle Certificate</text>
+  <text x="680" y="455" font-family="'JetBrains Mono', monospace" font-size="12" fill="#F80000" text-anchor="end">STATUS: Verified ✓</text>
+</svg>
