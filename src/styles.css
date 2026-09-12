@@ -184,11 +184,11 @@
 @utility glass-panel {
   background: linear-gradient(
     160deg,
-    oklch(0.26 0.026 264 / 65%),
-    oklch(0.18 0.022 264 / 75%)
+    oklch(0.24 0.024 264 / 80%),
+    oklch(0.18 0.02 264 / 88%)
   );
-  border: 1px solid oklch(0.55 0.03 264 / 30%);
-  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid oklch(0.5 0.025 264 / 28%);
+  backdrop-filter: blur(12px);
   box-shadow: var(--shadow-soft);
 }
 
@@ -196,25 +196,27 @@
   position: relative;
   background: linear-gradient(
     160deg,
-    oklch(0.24 0.026 264 / 75%),
-    oklch(0.18 0.022 264 / 90%)
+    oklch(0.23 0.024 264 / 80%),
+    oklch(0.18 0.02 264 / 92%)
   );
-  border: 1px solid oklch(0.5 0.03 264 / 28%);
+  border: 1px solid oklch(0.48 0.025 264 / 26%);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-soft);
   transition:
-    transform 0.4s var(--ease-out-soft),
-    border-color 0.3s ease,
-    box-shadow 0.4s ease;
+    transform 0.3s var(--ease-out-soft),
+    border-color 0.25s ease,
+    box-shadow 0.3s ease;
+  will-change: transform;
 }
 
 @utility lift-hover {
   transition:
-    transform 0.4s var(--ease-out-soft),
-    box-shadow 0.4s ease,
-    border-color 0.3s ease;
+    transform 0.3s var(--ease-out-soft),
+    box-shadow 0.3s ease,
+    border-color 0.25s ease;
+  will-change: transform;
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     box-shadow: var(--shadow-glow);
     border-color: oklch(0.82 0.145 190 / 50%);
   }
