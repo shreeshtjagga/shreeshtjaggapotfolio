@@ -7,8 +7,10 @@
     "dev": "vite dev",
     "build": "vite build",
     "build:node": "NITRO_PRESET=node-server vite build",
+    "build:render": "NITRO_PRESET=node-server vite build",
+    "build:vercel": "NITRO_PRESET=vercel vite build",
     "build:dev": "vite build --mode development",
-    "preview": "vite preview",
+    "preview": "node .output/server/index.mjs",
     "lint": "eslint .",
     "format": "prettier --write ."
   },

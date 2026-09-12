@@ -230,25 +230,25 @@ in place of certicate image keep  the comapny logo i achieced it from  profie ph
 and also the demo link same
 i ahve given you the github links for the proejct  i mentioned in the prompt use all this stricly and make it clean
 
-This project was built with [Lovable](https://lovable.dev).
+## Deployment
 
-**Live app**: https://shreeshtjaggapotfolio.lovable.app
+### Deploy on Vercel
+1. Import this repository into [Vercel](https://vercel.com).
+2. Framework preset: **Vite**
+3. Build command: `npm run build:vercel`
+4. Output directory: `.output/server` (configured via `vercel.json`)
+5. Deploy!
 
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/3055c04a-38c4-4ace-8c44-b97fe5d463ba).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+### Deploy on Render
+1. Create a new **Web Service** on [Render](https://render.com) connected to your repository.
+2. Runtime: **Node**
+3. Build command: `npm install && npm run build:render`
+4. Start command: `node .output/server/index.mjs`
+5. (Or use Blueprint with the included `render.yaml`)
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
 npm run dev
 ```

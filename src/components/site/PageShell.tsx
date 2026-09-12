@@ -18,21 +18,21 @@ export function PageShell({
   return (
     <div className="animate-page-enter">
       <Ambient tone={tone} />
-      <section className="mx-auto max-w-7xl px-6 pt-32 pb-10 sm:pt-40">
-        <p className="font-mono text-xs uppercase tracking-[0.32em] text-primary/80">{eyebrow}</p>
-        <h1 className="mt-4 max-w-4xl font-display text-4xl font-semibold leading-[1.05] sm:text-5xl md:text-6xl">
+      <section className="mx-auto max-w-7xl px-4 pt-28 pb-8 sm:px-6 sm:pt-36 md:pt-40 md:pb-10">
+        <p className="font-mono text-xs uppercase tracking-[0.28em] text-primary/80">{eyebrow}</p>
+        <h1 className="mt-4 max-w-4xl font-display text-3xl font-semibold leading-[1.1] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
           <WordReveal text={title} />
         </h1>
         {intro && (
           <p
-            className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground"
-            style={{ animation: "rise-in .7s var(--ease-out-soft) both", animationDelay: "260ms" }}
+            className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base md:text-lg"
+            style={{ animation: "rise-in .6s var(--ease-out-soft) both", animationDelay: "200ms" }}
           >
             {intro}
           </p>
         )}
       </section>
-      <main className="mx-auto max-w-7xl px-6 pb-8">{children}</main>
+      <main className="mx-auto max-w-7xl px-4 pb-12 sm:px-6">{children}</main>
     </div>
   );
 }

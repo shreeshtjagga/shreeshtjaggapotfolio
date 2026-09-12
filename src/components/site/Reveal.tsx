@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-type Variant = "rise" | "slide-left" | "slide-right" | "scale" | "clip";
+type Variant = "rise" | "slide-left" | "slide-right" | "scale";
 
 export function Reveal({
   children,
@@ -22,18 +22,23 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const reduced =
-      typeof window !== "undefined" &&
-      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (reduced || typeof IntersectionObserver === "undefined") {
+
+    if (typeof IntersectionObserver === "undefined") {
       setVisible(true);
       return;
     }
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.95 && rect.bottom > 0) {
-      setVisible(true);
-      return;
-    }
+
+    const checkInitial = () => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.95 && rect.bottom > 0) {
+        setVisible(true);
+        return true;
+      }
+      return false;
+    };
+
+    if (checkInitial()) return;
+
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0]?.isIntersecting) {
@@ -41,24 +46,24 @@ export function Reveal({
           io.disconnect();
         }
       },
-      { threshold: 0.06, rootMargin: "0px 0px -6% 0px" },
+      { threshold: 0.05, rootMargin: "0px 0px -2% 0px" },
     );
+
     io.observe(el);
-    // Safety net: never leave content invisible if the observer never fires.
-    const t = window.setTimeout(() => setVisible(true), 2500);
+    const timeout = setTimeout(() => setVisible(true), 1200);
+
     return () => {
-      window.clearTimeout(t);
+      clearTimeout(timeout);
       io.disconnect();
     };
   }, []);
-
 
   return (
     <Tag
       ref={ref}
       data-variant={variant}
       className={cn("reveal", visible && "is-visible", className)}
-      style={{ "--reveal-delay": `${delay}ms` } as React.CSSProperties}
+      style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
     </Tag>

@@ -1,17 +1,7 @@
-import resumeAsset from "@/assets/resume.pdf.asset.json";
-import logoAws from "@/assets/logo-aws.jpg.asset.json";
-import logoCisco from "@/assets/logo-cisco.png.asset.json";
-import logoOracle from "@/assets/logo-oracle.png.asset.json";
-import logoCantilever from "@/assets/logo-cantilever.png.asset.json";
-import certAwsPractitioner from "@/assets/cert-aws-practitioner.png.asset.json";
-import certAwsFoundations from "@/assets/cert-aws-foundations.png.asset.json";
-import certCiscoPython from "@/assets/cert-cisco-python.jpg.asset.json";
-import certOracleDesign from "@/assets/cert-oracle-design.jpg.asset.json";
-import certOracleSql from "@/assets/cert-oracle-sql.jpg.asset.json";
-
-export const RESUME_URL = resumeAsset.url;
+export const RESUME_URL = "https://drive.google.com/file/d/1w5xGRVasxo62UNW9ftwBNE9ap9Dt964g/view?usp=sharing";
 export const CREDLY_URL = "https://www.credly.com/users/shreeshtjagga/badges/credly";
-export const CANTILEVER_LOGO = logoCantilever.url;
+export const CANTILEVER_LOGO = "/logos/cantilever.svg";
+
 
 export const profile = {
   name: "Shreesht Jagga",
@@ -22,9 +12,9 @@ export const profile = {
   github: "https://github.com/shreeshtjagga",
   location: "Hyderabad, Telangana, India",
   summary:
-    "Final-year Computer Science / Data Science undergraduate with strong foundations in algorithms, probability, and statistics, including from-scratch implementations of neural networks, ensemble methods, and probabilistic models (Bayesian Networks, HMMs). Experienced in building high-performance backend systems, distributed data pipelines, and applied ML/NLP models. Seeking Software Engineering / ML roles applying these skills to research platforms and data-driven products.",
+    "Final-year Data Science undergraduate with strong expertise in applied machine learning, distributed data pipelines, and high-performance backend systems. Experienced in architecting full-stack AI platforms with FastAPI, PostgreSQL, Redis, LangGraph, and Groq LLM. Seeking Software Engineering, MLOps, and ML roles applying these skills to production systems.",
   tagline:
-    "Building high-performance backends, distributed data pipelines, and applied ML systems — from neural nets written from scratch to production AI platforms.",
+    "Building high-performance backends, distributed data pipelines, and production-ready machine learning systems — from quantitative models to multi-agent AI platforms.",
   rotatingRoles: [
     "Aspiring MLOps Engineer",
     "Backend & Data Pipeline Builder",
@@ -185,43 +175,57 @@ export const certifications = [
     title: "Generative AI Practitioner",
     issuer: "AWS Cloud Quest",
     short: "AWS",
-    logo: logoAws.url,
-    image: certAwsPractitioner.url,
+    logo: "/logos/aws.svg",
+    image: "/certificates/cert-aws-practitioner.svg",
+    credlyUrl: "https://www.credly.com/badges/8ca8a452-6eae-4011-984e-2c2ca5a568c0/public_url",
   },
   {
     title: "Generative AI Foundations Trained",
     issuer: "AWS Academy",
     short: "AWS",
-    logo: logoAws.url,
-    image: certAwsFoundations.url,
+    logo: "/logos/aws.svg",
+    image: "/certificates/cert-aws-foundations.svg",
+    credlyUrl: "https://www.credly.com/badges/1925b698-2a85-429e-be33-9c154b505994/public_url",
+  },
+  {
+    title: "Introduction to Red Hat OpenShift AI",
+    issuer: "Red Hat",
+    short: "Red Hat",
+    logo: "/logos/redhat.svg",
+    image: "/certificates/cert-redhat-openshift.svg",
+    credlyUrl: "https://www.credly.com/badges/725fe0b1-6432-439e-af3c-7b312b59761c/public_url",
   },
   {
     title: "Python Essentials",
     issuer: "Cisco Networking Academy",
     short: "Cisco",
-    logo: logoCisco.url,
-    image: certCiscoPython.url,
+    logo: "/logos/cisco.svg",
+    image: "/certificates/cert-cisco-python.svg",
+    credlyUrl: "https://www.credly.com/badges/ddacbb8e-1d2d-4b1a-9910-77335578776e/public_url",
   },
   {
     title: "Database Design",
     issuer: "Oracle Academy",
     short: "Oracle",
-    logo: logoOracle.url,
-    image: certOracleDesign.url,
+    logo: "/logos/oracle.svg",
+    image: "/certificates/cert-oracle-design.svg",
+    credlyUrl: null as string | null,
   },
   {
     title: "Database Programming with SQL",
     issuer: "Oracle Academy",
     short: "Oracle",
-    logo: logoOracle.url,
-    image: certOracleSql.url,
+    logo: "/logos/oracle.svg",
+    image: "/certificates/cert-oracle-sql.svg",
+    credlyUrl: null as string | null,
   },
-] as const;
+];
 
 export const aboutHighlights = [
-  "I'm a final-year Data Science undergrad who likes taking things apart until they make sense — then rebuilding them better.",
-  "Most of my work sits where machine learning meets real engineering: models that actually ship, backends that stay fast, and pipelines that don't fall over.",
-  "Outside the code, I'm the person who volunteers to lead the messy part — I've been tech lead on two award-winning sports-tech ideas and I like problems no one has cleanly solved yet.",
+  "I'm a final-year Data Science undergraduate focused on practical, high-impact machine learning and robust software engineering.",
+  "My expertise centers on building real-world ML systems and resilient backends: automated data analysis pipelines, agentic workflows, API architectures, and quantitative prediction models that hold up under load.",
+  "I specialize in the end-to-end lifecycle — from data preprocessing and feature engineering to deployment with FastAPI, Redis, PostgreSQL, and cloud infrastructure.",
+  "Outside pure coding, I've served as tech lead on award-winning hackathon and ideathon projects, enjoying the challenge of transforming complex data into working, accessible software.",
 ];
 
 export const timeline = [

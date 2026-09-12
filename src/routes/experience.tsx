@@ -34,16 +34,16 @@ function Experience() {
       intro="Classroom fundamentals on one side, real inference pipelines on the other."
       tone="violet"
     >
-      <div className="relative pl-8 sm:pl-12">
+      <div className="relative pl-6 sm:pl-10 md:pl-12">
         <div
           aria-hidden
-          className="absolute left-[11px] top-2 bottom-2 w-px sm:left-[19px]"
+          className="absolute left-[9px] top-2 bottom-2 w-px sm:left-[17px]"
           style={{
             background:
-              "linear-gradient(180deg, transparent, oklch(0.82 0.145 190 / 55%), oklch(0.68 0.17 295 / 45%), transparent)",
+              "linear-gradient(180deg, transparent, oklch(0.82 0.145 190 / 60%), oklch(0.68 0.17 295 / 50%), transparent)",
           }}
         />
-        <div className="space-y-10">
+        <div className="space-y-6 sm:space-y-8">
           {timeline.map((entry, i) => {
             const Icon =
               entry.kind === "education"
@@ -52,16 +52,16 @@ function Experience() {
                   ? Trophy
                   : Briefcase;
             return (
-              <Reveal key={entry.title} variant="slide-right" delay={i * 120}>
+              <Reveal key={entry.title} variant="slide-right" delay={i * 80}>
                 <div className="relative">
-                  <span className="absolute -left-8 top-6 grid h-6 w-6 place-items-center rounded-full border border-primary/45 bg-background text-primary sm:-left-12 sm:h-10 sm:w-10">
-                    <Icon size={14} className="sm:hidden" />
-                    <Icon size={17} className="hidden sm:block" />
+                  <span className="absolute -left-6 top-5 grid h-5 w-5 place-items-center rounded-full border border-primary/45 bg-background text-primary shadow-[0_0_12px_-4px_var(--glow)] sm:-left-10 sm:h-9 sm:w-9 md:-left-12">
+                    <Icon size={12} className="sm:hidden" />
+                    <Icon size={16} className="hidden sm:block" />
                   </span>
 
-                  <article className="surface-card lift-hover px-6 py-7 sm:px-8">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <span className="rounded-full border border-primary/30 bg-primary/8 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-primary">
+                  <article className="surface-card lift-hover p-5 sm:p-7 md:p-8">
+                    <div className="flex flex-wrap items-center gap-2.5">
+                      <span className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-primary sm:px-3 sm:py-1 sm:text-[11px]">
                         {entry.kind === "education"
                           ? "Education"
                           : entry.kind === "award"
@@ -71,34 +71,33 @@ function Experience() {
                       <span className="font-mono text-xs text-muted-foreground">{entry.period}</span>
                     </div>
 
-
-                    <h2 className="mt-4 font-display text-xl font-semibold sm:text-2xl">
+                    <h2 className="mt-3 font-display text-lg font-semibold sm:text-xl md:text-2xl">
                       {entry.title}
                     </h2>
-                    <div className="mt-2 flex items-center gap-3">
+                    <div className="mt-2 flex items-center gap-2.5">
                       {entry.org === "Cantilever Labs" && (
-                        <span className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-xl border border-border/70 bg-white/95 p-1">
+                        <span className="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-xl border border-primary/25 bg-surface-2/80 p-1.5 shadow-inner backdrop-blur-md">
                           <img
                             src={CANTILEVER_LOGO}
                             alt="Cantilever Labs logo"
                             loading="lazy"
-                            className="h-full w-full object-contain"
+                            className="h-full w-full object-contain filter drop-shadow"
                           />
                         </span>
                       )}
-                      <p className="text-sm text-foreground/85">{entry.org}</p>
+                      <p className="text-xs font-medium text-foreground/85 sm:text-sm">{entry.org}</p>
                     </div>
                     <p className="mt-1 inline-flex items-center gap-1.5 text-xs text-muted-foreground">
                       <MapPin size={12} /> {entry.location}
                     </p>
 
-                    <ul className="mt-5 space-y-3">
+                    <ul className="mt-4 space-y-2.5 sm:mt-5 sm:space-y-3">
                       {entry.bullets.map((b, bi) => (
                         <li
                           key={bi}
-                          className="flex gap-3 text-sm leading-relaxed text-muted-foreground"
+                          className="flex gap-2.5 text-xs leading-relaxed text-muted-foreground sm:text-sm"
                         >
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/70" />
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/70" />
                           <span>{b}</span>
                         </li>
                       ))}
@@ -109,11 +108,11 @@ function Experience() {
                         href={entry.link}
                         target="_blank"
                         rel="noreferrer"
-                        className="group mt-6 inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-[13px] font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary"
+                        className="group mt-5 inline-flex items-center gap-2 rounded-full border border-border/80 bg-surface/40 px-3.5 py-1.5 text-xs font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary sm:mt-6 sm:px-4 sm:py-2 sm:text-[13px]"
                       >
                         {entry.linkLabel}
                         <ExternalLink
-                          size={14}
+                          size={13}
                           className="transition-transform duration-300 group-hover:translate-x-0.5"
                         />
                       </a>

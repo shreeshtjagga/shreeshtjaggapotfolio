@@ -24,7 +24,8 @@ export function TiltCard({
     const py = (e.clientY - rect.top) / rect.height;
     cancelAnimationFrame(frame.current);
     frame.current = requestAnimationFrame(() => {
-      el.style.transform = `perspective(900px) rotateX(${(0.5 - py) * max}deg) rotateY(${(px - 0.5) * max}deg) translateY(-4px)`;
+      el.style.transition = "transform 0.08s ease-out, box-shadow 0.3s ease, border-color 0.3s ease";
+      el.style.transform = `perspective(1000px) rotateX(${(0.5 - py) * max * 1.4}deg) rotateY(${(px - 0.5) * max * 1.4}deg) translateZ(4px) translateY(-4px)`;
       el.style.setProperty("--mx", `${px * 100}%`);
       el.style.setProperty("--my", `${py * 100}%`);
     });
@@ -34,7 +35,8 @@ export function TiltCard({
     const el = ref.current;
     if (!el) return;
     cancelAnimationFrame(frame.current);
-    el.style.transform = "";
+    el.style.transition = "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.4s ease";
+    el.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) translateY(0px)";
   };
 
   return (

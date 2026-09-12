@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Award, ExternalLink, X } from "lucide-react";
+import { Award, ExternalLink } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
 import { certifications, CREDLY_URL } from "@/lib/portfolio-data";
@@ -12,12 +11,12 @@ export const Route = createFileRoute("/certificates")({
       {
         name: "description",
         content:
-          "Certifications from Cisco Networking Academy, Oracle Academy, and AWS in Python, database design, SQL, and generative AI.",
+          "Certifications from AWS, Red Hat, Cisco Networking Academy, and Oracle Academy in generative AI, cloud workflows, Python, and databases.",
       },
       { property: "og:title", content: "Certificates — Shreesht Jagga" },
       {
         property: "og:description",
-        content: "Cisco Python Essentials, Oracle Academy database credentials, AWS generative AI.",
+        content: "AWS Generative AI, Red Hat OpenShift AI, Cisco Python Essentials, Oracle Academy credentials.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/certificates" },
@@ -27,54 +26,54 @@ export const Route = createFileRoute("/certificates")({
   component: Certificates,
 });
 
-type Cert = (typeof certifications)[number];
-
 function Certificates() {
-  const [active, setActive] = useState<Cert | null>(null);
-
   return (
     <PageShell
       eyebrow="Certificates"
       title="Credentials that back the fundamentals."
-      intro="Formal certifications across programming, databases, and generative AI."
+      intro="Formal certifications across generative AI, cloud platforms, programming, and databases."
       tone="aqua"
     >
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
         {certifications.map((c, i) => (
-          <Reveal key={c.title} variant="scale" delay={i * 80}>
-            <article className="surface-card lift-hover group flex h-full flex-col px-6 py-7">
+          <Reveal key={c.title} variant="scale" delay={i * 60}>
+            <article className="surface-card lift-hover group flex h-full flex-col px-5 py-6 sm:px-6 sm:py-7">
               <div className="flex min-w-0 items-center gap-3">
-                <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-2xl border border-primary/30 bg-white/95 p-1.5 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105">
+                <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-2xl border border-primary/25 bg-surface-2/80 p-2.5 shadow-inner backdrop-blur-md transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:border-primary/60 group-hover:bg-primary/10 group-hover:shadow-[0_0_20px_-4px_var(--glow)]">
                   <img
                     src={c.logo}
                     alt={`${c.issuer} logo`}
                     loading="lazy"
-                    className="h-full w-full object-contain"
+                    className="h-full w-full object-contain filter drop-shadow"
                   />
                 </span>
-                <span className="ml-auto shrink-0 text-primary/70">
+                <span className="ml-auto shrink-0 text-primary/70 transition-transform duration-300 group-hover:scale-110">
                   <Award size={18} />
                 </span>
               </div>
-              <h2 className="mt-5 font-display text-lg font-semibold leading-snug">{c.title}</h2>
-              <p className="mt-1.5 text-sm text-muted-foreground">{c.issuer}</p>
-              <button
-                type="button"
-                onClick={() => setActive(c)}
-                className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-border px-4 py-2 text-[13px] font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary"
-              >
-                View Certificate
-              </button>
+              <h2 className="mt-4 font-display text-base font-semibold leading-snug sm:text-lg">{c.title}</h2>
+              <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{c.issuer}</p>
+              <div className="mt-auto pt-5">
+                <a
+                  href={c.credlyUrl || c.image || CREDLY_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex w-fit items-center gap-2 rounded-full border border-border/80 bg-surface/40 px-4 py-2 text-xs font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary hover:shadow-[0_0_18px_-4px_var(--glow)] sm:text-[13px]"
+                >
+                  {c.credlyUrl ? "Verify on Credly" : "View Certificate"}
+                  <ExternalLink size={12} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+                </a>
+              </div>
             </article>
           </Reveal>
         ))}
       </div>
 
       <Reveal delay={140}>
-        <div className="glass-panel mt-10 flex flex-col gap-4 rounded-2xl px-6 py-6 sm:flex-row sm:items-center">
+        <div className="glass-panel mt-10 flex flex-col gap-4 rounded-2xl p-5 sm:flex-row sm:items-center sm:p-6">
           <div className="min-w-0">
-            <p className="font-display text-lg">Verified badges on Credly</p>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <p className="font-display text-base font-semibold sm:text-lg">Verified badges on Credly</p>
+            <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
               All digital credentials, issued and verifiable.
             </p>
           </div>
@@ -82,48 +81,13 @@ function Certificates() {
             href={CREDLY_URL}
             target="_blank"
             rel="noreferrer"
-            className="group inline-flex w-fit shrink-0 items-center gap-2 rounded-full border border-primary/45 px-5 py-2.5 text-sm text-primary transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_24px_-8px_var(--glow)] sm:ml-auto"
+            className="group inline-flex w-fit shrink-0 items-center gap-2 rounded-full border border-primary/45 bg-primary/8 px-5 py-2.5 text-xs font-medium text-primary shadow-[0_0_16px_-6px_var(--glow)] transition-all duration-300 hover:-translate-y-0.5 sm:ml-auto sm:text-sm"
           >
             View Credly profile
-            <ExternalLink size={15} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+            <ExternalLink size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
           </a>
         </div>
       </Reveal>
-
-      {active && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={active.title}
-          className="fixed inset-0 z-[60] grid place-items-center overflow-y-auto bg-background/85 px-4 py-10 backdrop-blur-md"
-          onClick={() => setActive(null)}
-        >
-          <div
-            className="glass-panel relative w-full max-w-2xl rounded-3xl px-7 py-8"
-            style={{ animation: "pop-in .35s var(--ease-out-soft) both" }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              onClick={() => setActive(null)}
-              aria-label="Close certificate"
-              className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
-            >
-              <X size={16} />
-            </button>
-            <h3 className="pr-10 font-display text-xl font-semibold">{active.title}</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{active.issuer}</p>
-            <div className="mt-6 overflow-hidden rounded-2xl border border-border/70 bg-white/95">
-              <img
-                src={active.image}
-                alt={`${active.title} certificate`}
-                loading="lazy"
-                className="h-full w-full object-contain"
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </PageShell>
   );
 }
