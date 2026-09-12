@@ -12,6 +12,4 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
-  // NITRO_PRESET=node-server bun run build → Render/Node host; default stays cloudflare.
-  nitro: process.env["NITRO_PRESET"] ? { preset: process.env["NITRO_PRESET"] } : {},
 });
