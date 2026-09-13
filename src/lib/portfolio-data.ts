@@ -205,7 +205,7 @@ export const certifications = [
     issuer: "Oracle Academy",
     short: "Oracle",
     logo: "/logos/oracle.svg",
-    image: "/certificates/cert-oracle-design.svg",
+    image: "/certificates/cert-oracle-design.png",
     credlyUrl: null as string | null,
   },
   {
@@ -213,7 +213,7 @@ export const certifications = [
     issuer: "Oracle Academy",
     short: "Oracle",
     logo: "/logos/oracle.svg",
-    image: "/certificates/cert-oracle-sql.svg",
+    image: "/certificates/cert-oracle-sql.png",
     credlyUrl: null as string | null,
   },
 ];
