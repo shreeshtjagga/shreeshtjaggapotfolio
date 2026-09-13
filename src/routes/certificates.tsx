@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Award, ExternalLink, Eye, X, Download } from "lucide-react";
+import { Award, ExternalLink, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { PageShell } from "@/components/site/PageShell";
@@ -61,90 +61,53 @@ function Certificates() {
       intro="Formal certifications across generative AI, cloud platforms, programming, and databases."
       tone="aqua"
     >
+      {/* Clean, perfectly-balanced certificate cards */}
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
-        {certifications.map((c, i) => {
-          const hasImage = Boolean(c.image);
+        {certifications.map((c, i) => (
+          <Reveal key={c.title} variant="scale" delay={i * 50}>
+            <article className="surface-card lift-hover group flex h-full flex-col px-5 py-6 sm:px-6 sm:py-7">
+              <div className="flex min-w-0 items-center gap-3">
+                <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-2xl border border-primary/25 bg-surface-2/80 p-2.5 shadow-inner backdrop-blur-md transition-all duration-300 group-hover:scale-105 group-hover:border-primary/60 group-hover:bg-primary/10 group-hover:shadow-[0_0_20px_-4px_var(--glow)]">
+                  <img
+                    src={c.logo}
+                    alt={`${c.issuer} logo`}
+                    loading="lazy"
+                    className="h-full w-full object-contain filter drop-shadow"
+                  />
+                </span>
+                <span className="ml-auto shrink-0 text-primary/70 transition-transform duration-300 group-hover:scale-110">
+                  <Award size={18} />
+                </span>
+              </div>
 
-          return (
-            <Reveal key={c.title} variant="scale" delay={i * 50}>
-              <article className="surface-card lift-hover group flex h-full flex-col overflow-hidden p-5 sm:p-6">
-                <div className="flex min-w-0 items-center gap-3">
-                  <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-2xl border border-primary/25 bg-surface-2/80 p-2.5 shadow-inner backdrop-blur-md transition-all duration-300 group-hover:scale-105 group-hover:border-primary/60 group-hover:bg-primary/10 group-hover:shadow-[0_0_20px_-4px_var(--glow)]">
-                    <img
-                      src={c.logo}
-                      alt={`${c.issuer} logo`}
-                      loading="lazy"
-                      className="h-full w-full object-contain filter drop-shadow"
-                    />
-                  </span>
-                  <span className="ml-auto shrink-0 text-primary/70 transition-transform duration-300 group-hover:scale-110">
-                    <Award size={18} />
-                  </span>
-                </div>
+              <h2 className="mt-4 font-display text-base font-semibold leading-snug sm:text-lg">{c.title}</h2>
+              <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{c.issuer}</p>
 
-                {/* Certificate Preview Card for certificates with image */}
-                {hasImage && (
+              <div className="mt-auto pt-6">
+                {c.credlyUrl ? (
+                  <a
+                    href={c.credlyUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex w-fit items-center gap-2 rounded-full border border-border/80 bg-surface/40 px-4 py-2 text-xs font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary hover:shadow-[0_0_18px_-4px_var(--glow)] sm:text-[13px]"
+                  >
+                    Verify on Credly
+                    <ExternalLink size={12} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+                  </a>
+                ) : (
                   <button
                     type="button"
                     onClick={() => setSelectedCert(c)}
-                    className="group/img relative mt-4 block w-full overflow-hidden rounded-xl border border-border/70 bg-surface-2/40 text-left transition-all duration-300 hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
-                    aria-label={`Preview ${c.title} Certificate`}
+                    className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/45 bg-primary/10 px-4 py-2 text-xs font-medium text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/20 hover:border-primary/70 hover:shadow-[0_0_18px_-4px_var(--glow)] sm:text-[13px] cursor-pointer"
                   >
-                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-background/80 p-1 flex items-center justify-center">
-                      <img
-                        src={c.image}
-                        alt={`${c.title} Certificate`}
-                        loading="lazy"
-                        className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out group-hover/img:scale-[1.03]"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center bg-background/60 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover/img:opacity-100">
-                        <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/50 bg-background/90 px-3 py-1.5 text-xs font-semibold text-primary shadow-lg">
-                          <Eye size={14} /> Quick View
-                        </span>
-                      </div>
-                    </div>
+                    View Certificate
+                    <ExternalLink size={12} className="transition-transform duration-300 group-hover:translate-x-0.5" />
                   </button>
                 )}
-
-                <h2 className="mt-4 font-display text-base font-semibold leading-snug sm:text-lg">{c.title}</h2>
-                <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{c.issuer}</p>
-
-                <div className="mt-auto pt-5 flex flex-wrap items-center gap-2">
-                  {c.credlyUrl ? (
-                    <a
-                      href={c.credlyUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex w-fit items-center gap-2 rounded-full border border-border/80 bg-surface/40 px-4 py-2 text-xs font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary hover:shadow-[0_0_18px_-4px_var(--glow)] sm:text-[13px]"
-                    >
-                      Verify on Credly
-                      <ExternalLink size={12} className="transition-transform duration-300 group-hover:translate-x-0.5" />
-                    </a>
-                  ) : (
-                    <>
-                      <a
-                        href={c.image}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/45 bg-primary/10 px-4 py-2 text-xs font-medium text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/20 hover:border-primary/70 hover:shadow-[0_0_18px_-4px_var(--glow)] sm:text-[13px]"
-                      >
-                        View Certificate
-                        <ExternalLink size={12} className="transition-transform duration-300 group-hover:translate-x-0.5" />
-                      </a>
-                      <button
-                        type="button"
-                        onClick={() => setSelectedCert(c)}
-                        className="inline-flex w-fit items-center gap-1.5 rounded-full border border-border/70 bg-surface/40 px-3 py-2 text-xs font-medium text-muted-foreground transition-all duration-300 hover:border-primary/50 hover:text-foreground cursor-pointer sm:text-[13px]"
-                      >
-                        <Eye size={12} /> Preview
-                      </button>
-                    </>
-                  )}
-                </div>
-              </article>
-            </Reveal>
-          );
-        })}
+              </div>
+            </article>
+          </Reveal>
+        ))}
       </div>
 
       <Reveal delay={140}>
@@ -167,7 +130,7 @@ function Certificates() {
         </div>
       </Reveal>
 
-      {/* Responsive Certificate Lightbox Modal */}
+      {/* Clean, Full-Scale Certificate Lightbox */}
       {mounted &&
         selectedCert &&
         createPortal(
@@ -175,7 +138,7 @@ function Certificates() {
             role="dialog"
             aria-modal="true"
             aria-label={`${selectedCert.title} Certificate`}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 md:p-8 animate-page-enter"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-8 animate-page-enter"
           >
             {/* Backdrop */}
             <div
@@ -184,35 +147,26 @@ function Certificates() {
               aria-hidden="true"
             />
 
-            {/* Modal Card */}
-            <div className="relative z-10 flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-border/80 bg-surface/95 shadow-2xl backdrop-blur-xl">
-              {/* Modal Header */}
-              <div className="flex items-center justify-between border-b border-border/60 px-4 py-3 sm:px-6 sm:py-4">
-                <div className="min-w-0 pr-3">
-                  <h3 className="truncate font-display text-base font-semibold sm:text-lg text-foreground">
+            {/* Modal Box */}
+            <div className="relative z-10 flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-border/80 bg-surface/95 shadow-2xl backdrop-blur-xl">
+              {/* Header */}
+              <div className="flex items-center justify-between border-b border-border/60 px-5 py-3.5 sm:px-6 sm:py-4">
+                <div className="min-w-0 pr-4">
+                  <h3 className="truncate font-display text-base font-semibold text-foreground sm:text-lg">
                     {selectedCert.title}
                   </h3>
                   <p className="truncate text-xs text-muted-foreground sm:text-sm">{selectedCert.issuer}</p>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   {selectedCert.image && (
-                    <>
-                      <a
-                        href={selectedCert.image}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-surface-2/60 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
-                      >
-                        <ExternalLink size={13} /> Open Tab
-                      </a>
-                      <a
-                        href={selectedCert.image}
-                        download
-                        className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-surface-2/60 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
-                      >
-                        <Download size={13} /> Download
-                      </a>
-                    </>
+                    <a
+                      href={selectedCert.image}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-surface-2/60 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                    >
+                      <ExternalLink size={13} /> Open full size
+                    </a>
                   )}
                   <button
                     type="button"
@@ -225,13 +179,13 @@ function Certificates() {
                 </div>
               </div>
 
-              {/* Modal Image Body - Perfectly framed, no clutter, preserved aspect ratio */}
-              <div className="flex flex-1 items-center justify-center overflow-auto p-3 sm:p-6 bg-black/50">
+              {/* Certificate Image View - Crisp, properly aspect-ratio scaled */}
+              <div className="flex flex-1 items-center justify-center overflow-auto p-4 sm:p-6 bg-black/40">
                 {selectedCert.image ? (
                   <img
                     src={selectedCert.image}
                     alt={`${selectedCert.title} - ${selectedCert.issuer}`}
-                    className="max-h-[72vh] w-auto max-w-full rounded-lg object-contain shadow-2xl border border-white/10"
+                    className="max-h-[70vh] w-auto max-w-full rounded-lg object-contain shadow-2xl border border-white/10"
                   />
                 ) : (
                   <div className="flex flex-col items-center justify-center py-12 text-center text-muted-foreground">
