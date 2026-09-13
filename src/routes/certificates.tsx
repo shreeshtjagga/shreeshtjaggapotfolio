@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Award, ExternalLink, Eye, X } from "lucide-react";
+import { Award, ExternalLink, Eye, X, Download } from "lucide-react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { PageShell } from "@/components/site/PageShell";
@@ -63,7 +63,7 @@ function Certificates() {
     >
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
         {certifications.map((c, i) => {
-          const isImageCert = Boolean(c.image && c.image.endsWith(".png"));
+          const hasImage = Boolean(c.image);
 
           return (
             <Reveal key={c.title} variant="scale" delay={i * 50}>
@@ -82,20 +82,20 @@ function Certificates() {
                   </span>
                 </div>
 
-                {/* Certificate Preview Card for Oracle real images */}
-                {isImageCert && (
+                {/* Certificate Preview Card for certificates with image */}
+                {hasImage && (
                   <button
                     type="button"
                     onClick={() => setSelectedCert(c)}
-                    className="group/img relative mt-4 block w-full overflow-hidden rounded-xl border border-border/70 bg-black/40 text-left transition-all duration-300 hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    className="group/img relative mt-4 block w-full overflow-hidden rounded-xl border border-border/70 bg-surface-2/40 text-left transition-all duration-300 hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
                     aria-label={`Preview ${c.title} Certificate`}
                   >
-                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-2/30">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-background/80 p-1 flex items-center justify-center">
                       <img
                         src={c.image}
                         alt={`${c.title} Certificate`}
                         loading="lazy"
-                        className="h-full w-full object-contain object-center transition-transform duration-500 ease-out group-hover/img:scale-[1.03]"
+                        className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out group-hover/img:scale-[1.03]"
                       />
                       <div className="absolute inset-0 flex items-center justify-center bg-background/60 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover/img:opacity-100">
                         <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/50 bg-background/90 px-3 py-1.5 text-xs font-semibold text-primary shadow-lg">
@@ -109,7 +109,7 @@ function Certificates() {
                 <h2 className="mt-4 font-display text-base font-semibold leading-snug sm:text-lg">{c.title}</h2>
                 <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{c.issuer}</p>
 
-                <div className="mt-auto pt-5">
+                <div className="mt-auto pt-5 flex flex-wrap items-center gap-2">
                   {c.credlyUrl ? (
                     <a
                       href={c.credlyUrl}
@@ -121,14 +121,24 @@ function Certificates() {
                       <ExternalLink size={12} className="transition-transform duration-300 group-hover:translate-x-0.5" />
                     </a>
                   ) : (
-                    <button
-                      type="button"
-                      onClick={() => setSelectedCert(c)}
-                      className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/45 bg-primary/10 px-4 py-2 text-xs font-medium text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/20 hover:border-primary/70 hover:shadow-[0_0_18px_-4px_var(--glow)] sm:text-[13px]"
-                    >
-                      <Eye size={13} />
-                      View Certificate
-                    </button>
+                    <>
+                      <a
+                        href={c.image}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/45 bg-primary/10 px-4 py-2 text-xs font-medium text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/20 hover:border-primary/70 hover:shadow-[0_0_18px_-4px_var(--glow)] sm:text-[13px]"
+                      >
+                        View Certificate
+                        <ExternalLink size={12} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedCert(c)}
+                        className="inline-flex w-fit items-center gap-1.5 rounded-full border border-border/70 bg-surface/40 px-3 py-2 text-xs font-medium text-muted-foreground transition-all duration-300 hover:border-primary/50 hover:text-foreground cursor-pointer sm:text-[13px]"
+                      >
+                        <Eye size={12} /> Preview
+                      </button>
+                    </>
                   )}
                 </div>
               </article>
@@ -165,11 +175,11 @@ function Certificates() {
             role="dialog"
             aria-modal="true"
             aria-label={`${selectedCert.title} Certificate`}
-            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 animate-page-enter"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 md:p-8 animate-page-enter"
           >
             {/* Backdrop */}
             <div
-              className="absolute inset-0 bg-background/90 backdrop-blur-md transition-opacity"
+              className="absolute inset-0 bg-black/85 backdrop-blur-md transition-opacity"
               onClick={() => setSelectedCert(null)}
               aria-hidden="true"
             />
@@ -186,20 +196,29 @@ function Certificates() {
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   {selectedCert.image && (
-                    <a
-                      href={selectedCert.image}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-surface-2/60 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
-                    >
-                      <ExternalLink size={13} /> Full Size
-                    </a>
+                    <>
+                      <a
+                        href={selectedCert.image}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-surface-2/60 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                      >
+                        <ExternalLink size={13} /> Open Tab
+                      </a>
+                      <a
+                        href={selectedCert.image}
+                        download
+                        className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-surface-2/60 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                      >
+                        <Download size={13} /> Download
+                      </a>
+                    </>
                   )}
                   <button
                     type="button"
                     onClick={() => setSelectedCert(null)}
                     aria-label="Close modal"
-                    className="grid h-9 w-9 place-items-center rounded-xl border border-border/70 bg-surface/80 text-foreground transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    className="grid h-9 w-9 place-items-center rounded-xl border border-border/70 bg-surface/80 text-foreground transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
                   >
                     <X size={18} />
                   </button>
@@ -207,12 +226,12 @@ function Certificates() {
               </div>
 
               {/* Modal Image Body - Perfectly framed, no clutter, preserved aspect ratio */}
-              <div className="flex flex-1 items-center justify-center overflow-auto p-2 sm:p-6 bg-black/40">
+              <div className="flex flex-1 items-center justify-center overflow-auto p-3 sm:p-6 bg-black/50">
                 {selectedCert.image ? (
                   <img
                     src={selectedCert.image}
                     alt={`${selectedCert.title} - ${selectedCert.issuer}`}
-                    className="max-h-[72vh] w-auto max-w-full rounded-lg object-contain shadow-md"
+                    className="max-h-[72vh] w-auto max-w-full rounded-lg object-contain shadow-2xl border border-white/10"
                   />
                 ) : (
                   <div className="flex flex-col items-center justify-center py-12 text-center text-muted-foreground">
