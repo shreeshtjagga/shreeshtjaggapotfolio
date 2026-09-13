@@ -173,7 +173,7 @@ export const certifications = [
     issuer: "AWS Cloud Quest",
     short: "AWS",
     logo: "/logos/aws.svg",
-    image: "/certificates/cert-aws-practitioner.svg",
+    image: null as string | null,
     credlyUrl: "https://www.credly.com/badges/8ca8a452-6eae-4011-984e-2c2ca5a568c0/public_url",
   },
   {
@@ -181,7 +181,7 @@ export const certifications = [
     issuer: "AWS Academy",
     short: "AWS",
     logo: "/logos/aws.svg",
-    image: "/certificates/cert-aws-foundations.svg",
+    image: null as string | null,
     credlyUrl: "https://www.credly.com/badges/1925b698-2a85-429e-be33-9c154b505994/public_url",
   },
   {
@@ -189,7 +189,7 @@ export const certifications = [
     issuer: "Red Hat",
     short: "Red Hat",
     logo: "/logos/redhat.svg",
-    image: "/certificates/cert-redhat-openshift.svg",
+    image: null as string | null,
     credlyUrl: "https://www.credly.com/badges/725fe0b1-6432-439e-af3c-7b312b59761c/public_url",
   },
   {
@@ -197,7 +197,7 @@ export const certifications = [
     issuer: "Cisco Networking Academy",
     short: "Cisco",
     logo: "/logos/cisco.svg",
-    image: "/certificates/cert-cisco-python.svg",
+    image: null as string | null,
     credlyUrl: "https://www.credly.com/badges/ddacbb8e-1d2d-4b1a-9910-77335578776e/public_url",
   },
   {

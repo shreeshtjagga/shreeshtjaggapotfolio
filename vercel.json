@@ -1,5 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/certificates/cert-oracle-sql.svg",
+      "destination": "/certificates/cert-oracle-sql.png"
+    },
+    {
+      "source": "/certificates/cert-oracle-design.svg",
+      "destination": "/certificates/cert-oracle-design.png"
+    }
+  ]
 }
