@@ -1,4 +1,4 @@
-export const RESUME_URL = "/resume.pdf";
+export const RESUME_URL = "https://drive.google.com/file/d/16cLOpDVZKmmniafYBDqdg81FodLYS7gR/view?usp=sharing";
 export const CREDLY_URL = "https://www.credly.com/users/shreeshtjagga/badges/credly";
 export const CANTILEVER_LOGO = "/logos/cantilever.svg";
 export const WEB3FORMS_ACCESS_KEY = "8f8df4ac-132c-472d-94f7-2af8dbf2bee5";
